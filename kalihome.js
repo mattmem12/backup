@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
       "<a href='' target='' class='clickable'></a>Gannon_University.txt   <span class='clickable' id='honorsClick'>Rewards</span> <span class='clickable' data-file='transcript'>Transcript.pdf</span>"
     ],
 
-    experience:["Backend engineer — CyberSuite web app, penetration tests, CTF, lab projects"],
+    experience:["Resume.pdf"],
 
     about: [
       "mmargosian@kali:~$ whois mattmargosian.com",
