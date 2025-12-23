@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OWASP Pen Test</title>
+
+    <!-- External Styles -->
+    <link rel="stylesheet" href="../projects_css/main.css">
+</head>
+
+<body>
+
+    <!-- ===== HERO ===== -->
+    <header class="hero">
+        <h1>OWASP ZAP Scan</h1>
+    </header>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar">
+     <a href="../kalihome.html#projects?cat=cyber" class="back-link">X</a>
+    </nav>
+
+<body>
+
+    <!-- HERO SECTION -->
+    
+    <!-- MAIN PROJECT SECTION -->
+    <div class="project-section">
+
+        <!-- Overview -->
+        <h2 class="section-title">October 2023</h2>
+        <p>
+            This project demonstrates the use of OWASP ZAP as a proxy to perform manual scans 
+            of the BodgeIt Store. By intercepting and analyzing traffic, I captured user actions 
+            and data interactions during the store browsing session.
+        </p>
+
+        <!-- Key Steps -->
+        <h3 class="task-heading">Steps Performed</h3>
+        <ul>
+            <li>Added two items to the BodgeIt Store shopping cart to generate traffic.</li>
+            <li>Installed and launched OWASP ZAP.</li>
+            <li>Generated a dynamic SSL certificate and imported it into my browser.</li>
+            <li>Configured browser proxy settings to route traffic through OWASP ZAP.</li>
+            <li>Navigated to the BodgeIt Store while ZAP intercepted all requests.</li>
+            <li>Manually initiated a ZAP scan on the store URL.</li>
+            <li>Verified the scan completed successfully.</li>
+        </ul>
+
+        <!-- Screenshot Placeholders -->
+        <h3 class="task-heading">Screenshots</h3>
+
+<div class="slider-container">
+  <!-- Slide images -->
+  <div class="slides">
+    <img src="../images/Arp_images/o1.png" class="slide-image">
+    <img src="../images/Arp_images/o2.png" class="slide-image">
+    <img src="../images/Arp_images/o3.png" class="slide-image">
+    <img src="../images/Arp_images/o5.png" class="slide-image">
+    <img src="../images/Arp_images/o6.png" class="slide-image">
+    <img src="../images/Arp_images/o7.png" class="slide-image">
+    <img src="../images/Arp_images/o8.png" class="slide-image">
+    
+  </div>
+
+  <!-- Arrows -->
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+
+
+        <!-- Findings -->
+        <h3 class="task-heading">Findings</h3>
+        <ul>
+            <li>Captured all HTTP requests and responses between browser and store.</li>
+            <li>Tracked host and user-agent information.</li>
+            <li>Monitored user actions such as item addition and quantity changes.</li>
+            <li>Observed how the shopping cart updates were intercepted in real time.</li>
+        </ul>
+
+        <!-- Conclusion -->
+        <h3 class="task-heading">Conclusion</h3>
+        <p>
+            The OWASP ZAP scan successfully intercepted and analyzed network traffic, demonstrating 
+            the importance of security testing for web applications. The experiment showed how 
+            proxy-based scanning can reveal user activity and sensitive information within a web store.
+        </p>
+
+    
+
+
+    <script>
+let slideIndex = 0;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function showSlides(n) {
+  const slides = document.getElementsByClassName("slide-image");
+  if (n >= slides.length) { slideIndex = 0; }
+  if (n < 0) { slideIndex = slides.length - 1; }
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slides[slideIndex].style.display = "block";
+}
+
+// Show the first slide initially
+showSlides(slideIndex);
+</script>
+
+</body>
+</html>

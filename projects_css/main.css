@@ -1,0 +1,237 @@
+:root {
+    --bg: #0b0f12;
+    --panel: #0f1720;
+    --card: #0f1620;
+    --glass: rgba(255,255,255,0.04);
+    --text: #d9e6ea;
+    --muted: #9bdc9b;
+    --accent: #44ffb0;
+    --mono: "Fira Mono", "SFMono-Regular", Menlo, Monaco, monospace;
+}
+
+/* Reset & body */
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    padding: 20px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: clamp(15px,1.2vw,18px);
+    line-height: 1.5;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background: var(--panel);
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin: 0 auto;;
+    max-width: 900px;
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* ensures it stays above other content */
+}
+    
+.navbar .back-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    
+}
+.navbar .back-link:hover {
+    text-decoration: underline;
+}
+
+/* Hero / header */
+.hero {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.hero h1 {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    color: var(--accent);
+    margin: 0;
+}
+
+/* Project Section */
+.project-section {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.project-section h2 {
+    font-size: 1.2rem;
+    color: var(--muted);
+    margin-bottom: 5px;
+}
+.project-section .subtitle {
+    color: #aaa;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}
+
+/* Card */
+.card {
+    background: var(--card);
+    border: 1px solid var(--glass);
+    border-radius: 12px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* PDF Viewer */
+.pdf-viewer {
+    width: 100%;
+    height: 500px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* PDF Header / Fullscreen Button */
+.pdf-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.pdf-header h3 {
+    margin: 0;
+    color: var(--accent);
+    font-size: 1rem;
+}
+.pdf-btn {
+    background: var(--accent);
+    color: var(--bg);
+    border: none;
+    border-radius: 6px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.pdf-btn:hover {
+    background: #2ed8a0;
+}
+
+
+/* Slider / Image Styling */
+/* Slider container */
+.slider-container {
+    position: relative;
+    max-width: 800px;
+    margin: 20px auto;
+    background: var(--panel);
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid var(--glass);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Slides */
+.slides img {
+    width: 100%;
+    height: auto;
+    display: none; /* hidden by default */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* Arrow buttons */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--accent);
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 8px 12px;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.4);
+    transition: background 0.2s, color 0.2s;
+    z-index: 10;
+}
+
+.prev:hover, .next:hover {
+    background: var(--accent);
+    color: var(--panel);
+}
+
+/* Positioning arrows */
+.prev { left: 10px; }
+.next { right: 10px; }
+
+/* ===== TERMINAL / CMD CODE BLOCKS ===== */
+
+.code-block {
+  background: #020406;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin: 16px 0;
+  overflow-x: auto;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.6);
+  max-height: 500px;
+}
+
+/* Actual code text */
+.code-block pre {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: #44ffb0; /* terminal green */
+  white-space: pre;
+}
+
+/* Optional: slightly dim comments */
+.code-block code {
+  color: #44ffb0;
+}
+
+/* Comments inside code (// or #) */
+.code-block code span.comment {
+  color: #9bdc9b;
+  opacity: 0.8;
+}
+
+/* Scrollbar polish */
+.code-block::-webkit-scrollbar {
+  height: 6px;
+}
+.code-block::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.05);
+}
+.code-block::-webkit-scrollbar-thumb {
+  background: rgba(68,255,176,0.5);
+  border-radius: 4px;
+}
+
+/* Terminal prompt look */
+.code-block .prompt {
+  color: #44d7ff;
+  font-weight: 600;
+}
+
+
+
+/* Responsive */
+@media (max-width: 700px) {
+    .pdf-viewer {
+        height: 350px;
+    }
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+}

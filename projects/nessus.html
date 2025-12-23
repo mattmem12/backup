@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Nessus Vulnerability Projects</title>
+    <link rel="stylesheet" href="../projects_css/main.css">
+</head>
+
+<body>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <h1>Nessus Vulnerability Assessment & Validation</h1>
+   
+  </section>
+<nav class="navbar">
+     <a href="../kalihome.html#projects?cat=cyber" class="back-link">X</a>
+
+  </nav>
+  <!-- MAIN CONTENT -->
+  <main class="project-section">
+
+    <!-- PROJECT 1 -->
+    <section class="project">
+          <h2>February 8, 2024</h2>
+      <h3>Part 1 - Vulnerability Validation</h3>
+      <p>
+        This project focused on confirming Nessus scan results for Bind Shell Backdoor, SSL/POODLE, and Apache Tomcat default credentials using Linux commands, Nmap scripts, and web browsing.
+      </p>
+
+      <!-- Bind Shell -->
+      <div class="validation">
+        <h3>1. Bind Shell Backdoor</h3>
+        <p>Ran a basic nessus scan on a machine vulnerable to a bind shell backdoor. I can confirm the Nessus results by the successful use 
+            of the standard Linux command <code>id</code>, which confirmed the vulnerability.
+        </p>
+        <div class="slider-container">
+          <button class="slide-btn prev" onclick="changeSlide(this,-1)">&#10094;</button>
+          <div class="slides">
+            <img src="../images/nessus_images/1.png" alt="Bind shell id output" class="slide-image">
+            <img src="../images/nessus_images/2.png" alt="Nessus bind shell screenshot" class="slide-image">
+          </div>
+          <button class="slide-btn next" onclick="changeSlide(this,1)">&#10095;</button>
+          <div class="slide-dots"></div>
+        </div>
+      </div>
+
+      <!-- SSL -->
+      <div class="validation">
+        <h3>2. SSL/POODLE Validation</h3>
+        <p> Ran a basic nessus scan on a site vulnerable to ssl version detection.
+          Validated using Nmap scripts:
+          <code>nmap -sV --script ssl-poodle</code> and 
+          <code>nmap --script ssl-enum-ciphers</code>. Both confirmed weak SSL/cipher issues.
+        </p>
+        <div class="slider-container">
+          <button class="slide-btn prev" onclick="changeSlide(this,-1)">&#10094;</button>
+          <div class="slides">
+            <img src="../images/nessus_images/3.png" alt="SSL validation screenshot 1" class="slide-image">
+            <img src="../images/nessus_images/4.png" alt="SSL validation screenshot 2" class="slide-image">
+            <img src="../images/nessus_images/5.png" alt="SSL validation screenshot 1" class="slide-image">
+            <img src="../images/nessus_images/6.png" alt="SSL validation screenshot 2" class="slide-image">
+            <img src="../images/nessus_images/7.png" alt="SSL validation screenshot 2" class="slide-image">
+          </div>
+          <button class="slide-btn next" onclick="changeSlide(this,1)">&#10095;</button>
+          <div class="slide-dots"></div>
+        </div>
+      </div>
+
+      <!-- Tomcat -->
+      <div class="validation">
+        <h3>3. Apache Tomcat Default Page</h3>
+        <p>Ran a basic nessus scan on a site with an Apache vulnerablity and open port. Confirmed by opening <code>http://10.0.2.6:8180/tomcat-docs/index.html</code> in a browser. The default docs were accessible.</p>
+        <div class="slider-container">
+          <button class="slide-btn prev" onclick="changeSlide(this,-1)">&#10094;</button>
+          <div class="slides">
+           <img src="../images/nessus_images/8.png" alt="SSL validation screenshot 1" class="slide-image">
+            <img src="../images/nessus_images/9.png" alt="SSL validation screenshot 2" class="slide-image">
+            <img src="../images/nessus_images/10.png" alt="SSL validation screenshot 2" class="slide-image">
+          </div>
+          <button class="slide-btn next" onclick="changeSlide(this,1)">&#10095;</button>
+          <div class="slide-dots"></div>
+        </div>
+      </div>
+
+      <h3>Key Learnings</h3>
+      <ul>
+        <li>How to run and interpret Nessus scans</li>
+        <li>Manually validate true positives vs false positives</li>
+        <li>Use Nmap scripts and Linux commands for verification</li>
+        <li>Understand CVSS scoring and remediation guidance</li>
+      </ul>
+    </section>
+
+    <!-- PROJECT 2 -->
+    <section class="project">
+        <h2></h2>
+      <h3>Part 2 - OS Audit & Web Scan Analysis</h3>
+      <p>
+        This project included an OS audit scan, host information scan, and web application scan across multiple hosts, highlighting vulnerabilities and risk assessments.
+      </p>
+
+      <!-- OS Audit -->
+      <div class="validation">
+        <h3>1. OS Audit Scan — Host 10.0.2.6</h3>
+        <p>
+          Total vulnerabilities: 275 (17 Critical, 88 High, 115 Medium, 9 Low, 46 Info).  
+          Medium and high vulnerabilities account for 87% of findings. Critical CVSS 10 vulnerabilities pose immediate risk.
+        </p>
+        <p><strong>Medium Example:</strong> MySQL outdated package (USN-671-1)  
+          Attack Vector: Network, Access Complexity: High, Authentication: Single, CVSS: 4.6  
+          <br>Fix: Update affected packages.
+        </p>
+      </div>
+   <div class="slider-container">
+            <img src="../images/nessus_images/11.png" alt="Bind shell id output" class="slide-image">
+        </div>
+
+
+      <!-- Host Scan -->
+      <div class="validation">
+        <h3>2. Host Enumeration — Host 10.0.2.4</h3>
+        <p>
+          6 informational findings, including database and port info. No actionable vulnerabilities detected.
+        </p>
+      </div>
+       <div class="slider-container">
+            <img src="../images/nessus_images/12.png" alt="Bind shell id output" class="slide-image">
+        </div>
+      </div>
+
+
+      <!-- Web Scan -->
+      <div class="validation">
+        <h3>3. Web Application Scan — Host 10.0.2.6</h3>
+        <p>
+          35 vulnerabilities: 1 Critical, 1 Medium, 33 Info.  
+          Medium Example: HTTP TRACE / TRACK enabled  
+          CVSS: 5.3, Network attack vector, Low complexity, No authentication  
+          <br>Fix: Disable TRACE and TRACK methods.
+        </p>
+      </div>
+<div class="slider-container">
+            <img src="../images/nessus_images/13.png" alt="Bind shell id output" class="slide-image">
+        </div>
+
+      <h3>Key Learnings & Insights</h3>
+      <ul>
+        <li>Nessus helps identify, prioritize, and remediate vulnerabilities</li>
+        <li>Configuration audits show security gaps, compliance scans show adherence to standards</li>
+        <li>Combining host and web scans gives a comprehensive security overview</li>
+        <li>Proper remediation prioritization is critical based on CVSS and risk exposure</li>
+      </ul>
+
+   
+    </section>
+
+  </main>
+
+  <!-- SLIDER SCRIPT -->
+  <script>
+    function changeSlide(containerBtn, n) {
+      const container = containerBtn.closest('.slider-container');
+      const slides = container.querySelectorAll('.slide-image');
+      const dots = container.querySelectorAll('.dot');
+      let index = [...slides].findIndex(slide => slide.style.display === 'block');
+      if (index === -1) index = 0;
+      index += n;
+      if(index >= slides.length) index = 0;
+      if(index < 0) index = slides.length - 1;
+      slides.forEach(s => s.style.display = 'none');
+      slides[index].style.display = 'block';
+    }
+
+    // Initialize slides
+    document.querySelectorAll('.slider-container').forEach(container => {
+      const slides = container.querySelectorAll('.slide-image');
+      slides.forEach((s, i) => { s.style.display = i===0?'block':'none'; });
+    });
+  </script>
+
+</body>
+</html>

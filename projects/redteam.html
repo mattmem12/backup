@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Red vs Blue</title>
+  <link rel="stylesheet" href="../projects_css/main.css">
+</head>
+
+<body>
+
+ <!-- HERO SECTION -->
+  <section class="hero">
+    <h1>Red vs Blue</h1>
+   
+  </section>
+<nav class="navbar">
+    <a href="../kalihome.html#projects?cat=cyber" class="back-link">X</a>
+
+  </nav>
+
+<section class="project-section">
+
+  <h2>March 2024</h2>
+ 
+  <p>This section highlights my contributions to the Red Team during the Red vs Blue cybersecurity exercise. I was responsible for setting up the offensive environment, configuring tools, performing network reconnaissance, and executing targeted exploitation attempts while collaborating with teammates to coordinate attacks and adapt to Blue Team defenses.</p>
+
+  <h3>Teams</h3>
+  <ul>
+    <li><strong>Red Team:</strong> Attacks and attempts exploitation.</li>
+    <li><strong>Blue Team:</strong> Monitors, responds, and defends systems.</li>
+    <li><strong>White Team:</strong> Observes, enforces rules, and evaluates performance.</li>
+  </ul>
+
+  <h3>Rules of Engagement</h3>
+  <h4>Red Team Restrictions</h4>
+  <ul>
+    <li>No attacks on White Team systems,  physical attacks on hardware,  accessing Blue Team hosts through their physical device
+        use of prohibited tools under University policy.</li>
+  </ul>
+
+  <h4>Blue Team Restrictions</h4>
+  <ul>
+    <li>VMs must remain online, IP obfuscation, retaliation attacks, unauthorized system modifications, No third‑party vendor security tools</li>
+  </ul>
+
+  <h3>Red Team Setup</h3>
+  <p>
+    I installed Kali Linux on Proxmox and configured networking (vmbr0 for internet access). 
+    After updating the system, I set up Nessus, updated recon-ng, and installed key modules:
+  </p>
+
+  <ul>
+    <li>recon/domains-contacts/whois</li>
+    <li>recon/domains-hosts/hackertarget</li>
+    <li>recon/hosts-hosts/resolve</li>
+  </ul>
+
+  <p>
+    I also prepared Metasploit, msfvenom, OWASP tools, and other reconnaissance utilities 
+    for the engagement.
+  </p>
+
+  <!-- IMAGES USING YOUR project-image CLASS -->
+  <img src="../images/nessus_images/111.png" class="project-image" alt="Kali setup">
+
+
+  <h3>Findings & Exploits</h3>
+
+  <h4>Initial Scanning Attempts</h4>
+  <p>
+    After switching to vmbr1 (internal attack network), I ran Nmap scans, 
+    but the Blue Team firewall initially blocked all incoming IPs.
+  </p>
+
+
+  <h4>Network Discovery & Host Identification</h4>
+  <p>
+    Once the Blue Team temporarily disabled the firewall troublshooting, I used Netdiscover to enumerate 
+    active hosts (.67 and .77/.78).
+  </p>
+
+  <img src="../images/nessus_images/112.png" class="project-image" alt="Netdiscover">
+
+  <h4>Exploitation of Metasploitable Host(.77)</h4>
+  <p>
+    Nmap -A showed many open ports, including port <strong>1524</strong> which grants 
+    immediate root access on Metasploitable systems. I successfully connected via telnet 
+    and obtained full root control.
+  </p>
+
+  <img src="../images/nessus_images/113.png" class="project-image" alt="Root access">
+
+  <h4>Privilege Persistence – Setuid Backdoor</h4>
+  <p>
+    To maintain access even if patched, I created a backdoor using the setuid bit and 
+    a modified nano binary.
+  </p>
+
+  <img src="../images/nessus_images/114.png" class="project-image" alt="setuid backdoor">
+
+  <h4>Scanning the Windows Host (.96)</h4>
+  <p>
+    An Nmap scan (-A -Pn -O) revealed open ports 135 and 445, suggesting RPC and SMB. 
+    Nessus confirmed SMB Signing Not Required.
+  </p>
+
+  <img src="../images/nessus_images/1100.png" class="project-image" alt="SMB scan">
+
+  <h4>SMBGhost Exploit Attempt</h4>
+  <p>
+    I attempted the SMBGhost RCE exploit (CVE‑2020‑0796).  
+    The host crashed but access was not gained.
+  </p>
+
+  <img src="../images/nessus_images/115.png" class="project-image" alt="SMB scan">
+  <h4>SMB Enumeration – enum4linux</h4>
+  <p>
+    Using enum4linux, I enumerated usernames on the Windows server.  
+    Blue Team removed the guest account, preventing login attempts.
+  </p>
+
+  <h3>Conclusion</h3>
+  <p>
+    This exercise demonstrated the interplay between offensive and defensive cybersecurity 
+    strategies. The Red Team successfully exploited the Metasploitable machine and maintained 
+    persistence, while attempts on the Windows host highlighted the importance of 
+    system hardening and defensive controls.
+  </p>
+
+</section>
+
+</body>
+</html>

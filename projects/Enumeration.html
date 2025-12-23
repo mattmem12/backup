@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Facebook OSINT & VM Pen Test</title>
+
+  <!-- External CSS -->
+    <link rel="stylesheet" href="../projects_css/main.css">
+</head>
+<body>
+
+  <!-- HERO SECTION -->
+  <header class="hero">
+    <h1>Facebook OSINT & Network Penetration Testing</h1>
+  </header>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+     <a href="../kalihome.html#projects?cat=cyber" class="back-link">X</a>
+  </nav>
+
+  <!-- MAIN PROJECT SECTION -->
+  <main class="project-section">
+
+    <h2>October 2023</h2>
+    <p>
+      This project demonstrates external intelligence gathering and internal network testing. 
+      Part 1 covers Facebook OSINT, and Part 2 covers VM network enumeration and penetration testing.
+    </p>
+
+    <!-- PART 1 -->
+    <h3>Part 1 — Facebook OSINT & DNS Reconnaissance</h3>
+    <ul>
+      <li>Tools: Whois, Nslookup, Dnsrecon, TheHarvester, Dnsenum, Dig, Dmitry, BuiltWith, Shodan, Recon-ng</li>
+      <li>Identified registrar, admin contacts, authoritative name servers, MX, CNAME, SOA records</li>
+      <li>Discovered subdomains (developers.facebook.com, business.facebook.com, etc.)</li>
+      <li>Attempted DNS zone transfer (success via zonetransfer.me)</li>
+      <li>Analyzed web technologies and server stack</li>
+      <li>Generated OSINT HTML report using Recon-ng</li>
+    </ul>
+
+    <!-- Slider for Part 1 -->
+    <div class="slider-container" id="slider1">
+      <div class="slides">
+        <img src="../images/enum_images/1.png" alt="OSINT Screenshot 1" class="slide-image">
+        <img src="../images/enum_images/2.png" alt="OSINT Screenshot 2" class="slide-image">
+           <img src="../images/enum_images/3.png" alt="OSINT Screenshot 1" class="slide-image">
+        <img src="../images/enum_images/4.png" alt="OSINT Screenshot 2" class="slide-image">
+           <img src="../images/enum_images/5.png" alt="OSINT Screenshot 1" class="slide-image">
+        <img src="../images/enum_images/6.png" alt="OSINT Screenshot 2" class="slide-image">
+           <img src="../images/enum_images/7.png" alt="OSINT Screenshot 1" class="slide-image">
+        <img src="../images/enum_images/8.png" alt="OSINT Screenshot 2" class="slide-image">
+           <img src="../images/enum_images/9.png" alt="OSINT Screenshot 1" class="slide-image">
+        <img src="../images/enum_images/10.png" alt="OSINT Screenshot 2" class="slide-image">
+            <img src="../images/enum_images/11.png" alt="OSINT Screenshot 2" class="slide-image">
+                <img src="../images/enum_images/115.png" alt="OSINT Screenshot 2" class="slide-image">
+                    <img src="../images/enum_images/12.png" alt="OSINT Screenshot 2" class="slide-image">
+      </div>
+     <a class="prev" onclick="plusSlides('slider1', -1)">&#10094;</a>
+<a class="next" onclick="plusSlides('slider1', 1)">&#10095;</a>
+
+    </div>
+
+    <!-- PART 2 -->
+    <h3>Part 2 — VM Network & Penetration Testing</h3>
+    <ul>
+      <li>Tools: Kali Linux, Metasploitable2, Nmap, Wireshark, macchanger</li>
+      <li>Identified VM IPs, MAC addresses, and subnet mask (/24)</li>
+      <li>Spoofed MAC addresses using macchanger</li>
+      <li>Captured network traffic with Wireshark</li>
+      <li>Performed Nmap host discovery, ACK/FIN scans, and full -A enumeration</li>
+      <li>Ran NSE scripts (safe & vuln) to identify potential vulnerabilities</li>
+    </ul>
+
+    <!-- Slider for Part 2 -->
+    <div class="slider-container" id="slider2">
+      <div class="slides">
+        <img src="../images/enum_images/22.png" alt="VM Scan Screenshot 1" class="slide-image">
+        <img src="../images/enum_images/21.png" alt="VM Scan Screenshot 2" class="slide-image">
+          <img src="../images/enum_images/20.png" alt="VM Scan Screenshot 2" class="slide-image">
+      </div>
+    <a class="prev" onclick="plusSlides('slider2', -1)">&#10094;</a>
+<a class="next" onclick="plusSlides('slider2', 1)">&#10095;</a>
+
+    </div>
+
+    <h3>Outcome</h3>
+    <p>
+      Demonstrates ability to conduct both external reconnaissance via OSINT and internal network scanning in a lab environment, showing real-world ethical hacking techniques.
+    </p>
+
+  </main>
+
+  <!-- SLIDER SCRIPT -->
+ <script>
+const sliders = {};
+
+function showSlides(sliderId, n) {
+  const container = document.getElementById(sliderId);
+  const slides = container.getElementsByClassName("slide-image");
+
+  if (!sliders[sliderId]) sliders[sliderId] = 0;
+
+  if (n >= slides.length) sliders[sliderId] = 0;
+  if (n < 0) sliders[sliderId] = slides.length - 1;
+
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+
+  slides[sliders[sliderId]].style.display = "block";
+}
+
+function plusSlides(sliderId, n) {
+  sliders[sliderId] += n;
+  showSlides(sliderId, sliders[sliderId]);
+}
+
+// Initialize both sliders
+showSlides('slider1', 0);
+showSlides('slider2', 0);
+</script>
+
+
+</body>
+</html>

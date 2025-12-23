@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matthew Margosian | Cybersecurity & Software</title>
+  <link rel="stylesheet" href="style.css">
+ 
+</head>
+
+<body>
+
+  <!-- ===== HEADER / HERO ===== -->
+  <header class="hero">
+    <h1>Matthew Margosian</h1>
+    <p>Cybersecurity • Networking • Software Engineering</p>
+    <p class="contact">
+      Email: <a href="mailto:matt.margosian@gmail.com">matt.margosian@gmail.com</a> • 
+      Cell: 814-402-0301
+    </p>
+    
+  </header>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="resume.pdf" target="_blank">Resume</a>
+    <a href="about.html">About</a>
+  </nav>
+
+  <!-- ===== EDUCATION ===== -->
+
+  <!-- LEFT SIDE -->
+<h2>Education</h2>
+  <link rel="stylesheet" href="skills.css">
+<div class="edu-container">
+
+  <!-- LEFT SIDE: Education -->
+  <div class="edu-left">
+    <div class="edu-card">
+      <h3>Gannon University — Cybersecurity (B.S.)</h3>
+      <p>Minor: Business Administration • GPA: 3.9 • Graduated: May 2025</p>
+
+      <!-- Buttons -->
+     <div class="edu-buttons">
+  <button class="edu-btn" onclick="openModal('diploma')">View Diploma</button>
+  <button class="edu-btn" onclick="openModal('transcript')">View Transcript</button>
+</div>
+
+<!-- Modal -->
+<div id="diploma" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('diploma')">&times;</span>
+    <iframe src="Z_images/Diploma.pdf"></iframe>
+  </div>
+</div>
+
+<div id="transcript" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('transcript')">&times;</span>
+    <iframe src="Z_images/Transcript.pdf"></iframe>
+  </div>
+</div>
+
+
+      <h3>Cathedral Preparatory School</h3>
+      <p>GPA: 3.9 • Graduated 2021</p>
+
+      <h3>Certifications</h3>
+      <p>NinjaOne Technician, CJIS Certification</p>
+    </div>
+  </div>
+
+  <!-- RIGHT SIDE: In Progress + Websites -->
+  <div class="edu-right-wrapper">
+
+    <div class="edu-right">
+      <h3>In Progress</h3>
+      <ul>
+        <li>CompTIA Network+</li>
+        <li>Microsoft Azure AZ-900</li>
+        <li>Full Stack Application</li>
+      </ul>
+    </div>
+
+    <div class="edu-right" id="skills">
+      <h3>Websites</h3>
+      <ul>
+        <li><a href="https://www.armcybersuite.com" target="_blank">www.armcybersuite.com</a></li>
+        <li><a href="https://www.endexploits.com" target="_blank">www.endexploits.com</a></li>
+        <li><a href="https://www.pennpeptides.org" target="_blank">www.pennpeptides.org</a></li>
+      </ul>
+    </div>
+
+  </div>
+  
+</div >
+
+
+
+<!-- Modal Popup -->
+<div id="eduModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <iframe id="eduFrame" src="" frameborder="0"></iframe>
+  </div>
+</div>
+
+<h2>Skills</h2>
+  <link rel="stylesheet" href="education.css">
+    <link rel="stylesheet" href="skills.css">
+<div class="edu-container2" >
+
+  <!-- LEFT SIDE: Education -->
+ <div class="edu-left">
+  <div class="edu-card">
+
+    <h3>Technical</h3>
+    <div class="skill-line2">
+      <div class="skill-group">
+        <strong>Web Design:</strong>
+        <span class="bullet green"></span> HTML
+        <span class="bullet green"></span> CSS
+      </div>
+
+      <div class="skill-group data-group">
+        <strong>Data:</strong>
+        <span class="bullet green"></span> MySQL
+        <span class="bullet green"></span> MariaDB
+        <span class="bullet green"></span> SQLite
+      </div>
+    </div>
+
+    <div class="skill-line2">
+      <div class="skill-group">
+        <strong>Risk Assessment:</strong>
+        <span class="bullet green"></span> NIST SP 800-30
+        <span class="bullet green"></span> Octave Allegro
+      </div>
+
+      <div class="skill-group data-group">
+        <strong>Threat Analysis:</strong>
+        <span class="bullet green"></span> CVE Research
+        <span class="bullet green"></span> CVSS Scoring
+      </div>
+    </div>
+
+    <div class="skill-line2">
+      <div class="skill-group">
+        <strong>Cloud:</strong>
+        <span class="bullet blue"></span> Azure
+        <span class="bullet blue"></span> Digital Ocean
+      </div>
+
+      <div class="skill-group data-group">
+        <strong>Office:</strong>
+        <span class="bullet green"></span> 365 Apps
+        <span class="bullet green"></span> ADMIN Portal
+      </div>
+    </div>
+
+    <div class="skill-line2">
+      <div class="skill-group">
+        <strong>Virtualization:</strong>
+        <span class="bullet green"></span> Proxmox
+        <span class="bullet green"></span> VirtualBox
+      </div>
+
+      <div class="skill-group data-group">
+        <strong>OS:</strong>
+        <span class="bullet green"></span> Linux
+        <span class="bullet green"></span> Windows
+      </div>
+    </div>
+
+    <h3>Programming</h3>
+    <div class="skill-line">
+      <strong>Languages:</strong>
+      <span class="bullet green"></span> SQL
+      <span class="bullet green"></span> JavaScript
+      <span class="bullet blue"></span> Java
+      <span class="bullet blue"></span> Python
+      <span class="bullet blue"></span> PHP
+      <span class="bullet blue"></span> Bash
+      <span class="bullet orange"></span> C++
+    </div>
+
+    <div class="skill-line">
+      <strong>Stack Tools:</strong>
+      <span class="bullet green"></span> Laravel
+      <span class="bullet green"></span> Node.js
+      <span class="bullet green"></span> XAMPP
+      <span class="bullet green"></span> phpMyAdmin
+    </div>
+
+  </div>
+</div>
+
+<!-- RIGHT SIDE: In Progress + Websites -->
+<div class="edu-right-wrapper">
+
+  <div class="edu-right">
+    <h3>Network Tools</h3>
+    <div class="skill-line">
+      
+      <span class="bullet green"></span> Nessus
+      <span class="bullet green"></span> Barracuda
+      <span class="bullet orange"></span> OWASP ZAP
+      <span class="bullet orange"></span> OpenVAS
+   
+
+     
+      <span class="bullet green"></span> Wireshark
+      <span class="bullet green"></span> Nmap
+      <span class="bullet green"></span> Recon-ng
+      <span class="bullet green"></span> The Harvester
+      <span class="bullet green"></span> Dmitry
+      <span class="bullet blue"></span> Maltego
+    </div>
+     <h3>IDE</h3>
+    <div class="skill-line">
+      <span class="bullet green"></span> VS Code
+      <span class="bullet green"></span> Android Studio
+      <span class="bullet blue"></span> Visual Studio
+    </div>
+
+  </div>
+
+
+
+</div>
+
+</div>
+
+
+
+<!-- Modal Popup -->
+<div id="eduModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <iframe id="eduFrame" src="" frameborder="0"></iframe>
+  </div>
+</div>
+
+
+    
+
+ 
+    
+    
+</section>
+
+  <!-- ===== PROJECTS SECTION ===== -->
+  <section id="projects">
+    <h2>Projects</h2>
+
+    <!-- Search Bar Placeholder -->
+    <input type="text" id="searchBar" placeholder="Search projects by keyword…">
+
+    <div class="project-grid">
+
+      <!-- Example Project Card -->
+   
+          <div class="project-grid">
+
+      <!-- Example Project Card -->
+    <div class="project-card" data-tags="cybersecurity c++ encryption">
+  <h3>DES Encryption Algorithm (C++)</h3>
+  <p>Implemented DES encryption with full key scheduling and bit operations.</p>
+
+  <div class="tags">
+    <span class="tag tag-green">Cybersecurity</span>
+    <span class="tag tag-orange">C++</span>
+
+  </div>
+
+  <a href="projects/des.html" class="view-btn">View Project</a>
+</div>
+
+      <!-- Example Project Card -->
+      <div class="project-card" data-tags="networking analysis nmap">
+        <h3>Network Penetration Test</h3>
+        <p>Authorized audit using Nmap, OpenVAS, ZAP, and automated reporting.</p>
+
+        <div class="tags">
+          <span class="tag tag-green">Networking</span>
+          <span class="tag tag-green">Cybersecurity</span>
+          <span class="tag tag-blue">Nmap</span>
+        </div>
+
+        <div class="links">
+          <a href="/Projects/pentest.html">View Report</a>
+        </div>
+      </div>
+
+    </div>
+        <div class="project-grid">
+
+      <!-- Example Project Card -->
+    <div class="project-card" data-tags="cybersecurity c++ encryption">
+  <h3>Buffer Overflow </h3>
+  <p>Developed and executed a buffer overflow exploit  in a controlled lab environment.</p>
+
+  <div class="tags">
+    <span class="tag tag-green">Cybersecurity</span>
+    <span class="tag tag-orange">C++</span>
+
+  </div>
+
+  <a href="projects/buffer.html" class="view-btn">View Project</a>
+</div>
+
+      <!-- Example Project Card -->
+      <div class="project-card" data-tags="networking analysis nmap">
+        <h3>Red vs Blue</h3>
+        <p>Authorized audit using Nmap, OpenVAS, ZAP, and automated reporting.</p>
+
+        <div class="tags">
+          <span class="tag tag-green">Networking</span>
+          <span class="tag tag-green">Cybersecurity</span>
+          <span class="tag tag-blue">Nmap</span>
+        </div>
+
+        <div class="links">
+          <a href="/Projects/redteam.html">View Report</a>
+        </div>
+      </div>
+
+    </div>
+        <div class="project-grid">
+
+      <!-- Example Project Card -->
+    <div class="project-card" data-tags="cybersecurity c++ encryption">
+  <h3>ARP Cache Posioning</h3>
+  <p>Execution of an ARP cache poisoning  (MITM) attack inside a controlled lab environment.</p>
+
+  <div class="tags">
+    <span class="tag tag-green">Cybersecurity</span>
+    <span class="tag tag-blue">Python</span>
+
+  </div>
+
+  <a href="projects/arp.html" class="view-btn">View Project</a>
+</div>
+
+      <!-- Example Project Card -->
+      <div class="project-card" data-tags="networking analysis nmap">
+        <h3>Capture the Flag</h3>
+        <p>Participated in the BSidesROC CTF, solving a variety of cybersecurity challenges.</p>
+
+        <div class="tags">
+      
+          <span class="tag tag-green">Cybersecurity</span>
+          <span class="tag tag-blue">Bash</span>
+        </div>
+
+        <div class="links">
+          <a href="/Projects/ctf.html">View Report</a>
+        </div>
+      </div>
+
+    </div>
+    <div class="project-grid">
+
+      <!-- Example Project Card -->
+    <div class="project-card" data-tags="cybersecurity c++ encryption">
+  <h3>OWASP Zap Project</h3>
+  <p>Implemented DES encryption with full key scheduling and bit operations.</p>
+
+  <div class="tags">
+    <span class="tag tag-green">Cybersecurity</span>
+    <span class="tag tag-orange">C++</span>
+
+  </div>
+
+  <a href="projects/owasp.html" class="view-btn">View Project</a>
+</div>
+
+      <!-- Example Project Card -->
+      <div class="project-card" data-tags="networking analysis nmap">
+        <h3>Cyber Awareness Event</h3>
+        <p>Hosted a campus Cyber Awareness event to educate on practical cyber hygiene and threat awareness.</p>
+
+        <div class="tags">
+          <span class="tag tag-green">Cybersecurity</span>
+       
+        </div>
+
+        <div class="links">
+          <a href="/Projects/hce.html">View Report</a>
+        </div>
+      </div>
+
+    </div>
+        <div class="project-grid">
+
+      <!-- Example Project Card -->
+    <div class="project-card" data-tags="cybersecurity c++ encryption">
+  <h3>Nessus Project</h3>
+  <p>Validated and documented Nessus vulnerability findings on Linux hosts.</p>
+
+  <div class="tags">
+    <span class="tag tag-green">Cybersecurity</span>
+    <span class="tag tag-blue">Bash</span>
+
+  </div>
+
+  <a href="projects/nessus.html" class="view-btn">View Project</a>
+</div>
+
+      <!-- Example Project Card -->
+      <div class="project-card" data-tags="networking analysis nmap">
+        <h3>Enumeration Project</h3>
+        <p>Ethical hacking with Facebook OSINT and VM network testing.</p>
+
+        <div class="tags">
+          <span class="tag tag-green">Networking</span>
+          <span class="tag tag-green">Cybersecurity</span>
+          <span class="tag tag-blue">Nmap</span>
+        </div>
+
+        <div class="links">
+          <a href="/Projects/Enumeration.html">View Report</a>
+        </div>
+      </div>
+
+    </div>    <div class="project-grid">
+
+      <!-- Example Project Card -->
+    <div class="project-card" data-tags="cybersecurity c++ encryption">
+  <h3>Fail Over Cluster
+  </h3>
+  <p>Built a two-node Windows failover cluster with shared iSCSI storage and a highly available virtual machine.</p>
+
+  <div class="tags">
+    <span class="tag tag-green">Cybersecurity</span>
+    <span class="tag tag-orange">C++</span>
+
+  </div>
+
+  <a href="projects/foc.html" class="view-btn">View Project</a>
+</div>
+
+      <!-- Example Project Card -->
+      <div class="project-card" data-tags="networking analysis nmap">
+        <h3>Full Stack Web App</h3>
+        <p>Engineered a secure hashing system and web scanner that identifies threats and scores site security.</p>
+
+        <div class="tags">
+          <span class="tag tag-green">Networking</span>
+          <span class="tag tag-green">Cybersecurity</span>
+          <span class="tag tag-blue">Nmap</span>
+        </div>
+
+        <div class="links">
+          <a href="/Projects/arm.html">View Report</a>
+        </div>
+      </div>
+
+    </div>    <div class="project-grid">
+
+      <!-- Example Project Card -->
+    <div class="project-card" data-tags="cybersecurity c++ encryption">
+  <h3>Database Project</h3>
+  <p>Personal finance database tracking accounts, transactions, expenses, and bills for multiple users</p>
+
+  <div class="tags">
+    <span class="tag tag-green">Cybersecurity</span>
+    <span class="tag tag-orange">C++</span>
+
+  </div>
+
+  <a href="projects/db.html" class="view-btn">View Project</a>
+</div>
+
+      <!-- Example Project Card -->
+      <div class="project-card" data-tags="networking analysis nmap">
+        <h3>Web App Compliance</h3>
+        <p>Authorized audit using Nmap, OpenVAS, ZAP, and automated reporting.</p>
+
+        <div class="tags">
+          <span class="tag tag-green">Networking</span>
+          <span class="tag tag-green">Cybersecurity</span>
+          <span class="tag tag-blue">Nmap</span>
+        </div>
+
+        <div class="links">
+          <a href="/Projects/pentest.html">View Report</a>
+        </div>
+      </div>
+
+    </div>    <div class="project-grid">
+
+      <!-- Example Project Card -->
+    <div class="project-card" data-tags="cybersecurity networking vlan">
+  <h3>Vlan Project</h3>
+  <p>Segmented a network using VLANs and subnets while configuring switch security and connectivity.</p>
+
+  <div class="tags">
+    <span class="tag tag-green">Cybersecurity</span>
+    <span class="tag tag-blue">Networking</span>
+
+  </div>
+
+  <a href="projects/Vlan.html" class="view-btn">View Project </a>
+</div>
+
+      <!-- Example Project Card -->
+      <div class="project-card" data-tags="networking analysis nmap">
+        <h3>Mobile App</h3>
+        <p>Authorized audit using Nmap, OpenVAS, ZAP, and automated reporting.</p>
+
+        <div class="tags">
+          <span class="tag tag-green">Networking</span>
+          <span class="tag tag-green">Cybersecurity</span>
+          <span class="tag tag-blue">Nmap</span>
+        </div>
+
+        <div class="links">
+          <a href="/Projects/pentest.html"class="view-btn">View Report</a>
+        </div>
+      </div>
+
+    </div>    <div class="project-grid">
+
+      <!-- Example Project Card -->
+    <div class="project-card" data-tags="cybersecurity c++ encryption">
+  <h3>IoT Project</h3>
+  <p>An IoT environment monitor using MQTT to publish and display real-time sensor data.</p>
+
+  <div class="tags">
+    <span class="tag tag-green">Cybersecurity</span>
+    <span class="tag tag-blue">Python</span>
+
+  </div>
+
+  <a href="projects/IoT.html" class="view-btn">View Project</a>
+</div>
+
+      <!-- Example Project Card -->
+      <div class="project-card" data-tags="networking analysis nmap">
+        <h3>Cloud</h3>
+        <p>Add</p>
+
+        <div class="tags">
+          <span class="tag tag-green">Networking</span>
+          <span class="tag tag-green">Cybersecurity</span>
+          <span class="tag tag-blue">Nmap</span>
+        </div>
+
+        <div class="links">
+          <a href="/Projects/pentest.html"class="view-btn">View Report</a>
+        </div>
+      </div>
+
+    </div>
+        <div class="project-grid">
+
+      <!-- Example Project Card -->
+    <div class="project-card" data-tags="cybersecurity c++ encryption">
+  <h3>Insurance Automation</h3>
+  <p>Automated client data collection for an insurance agency using a Python web scraper and CSV output.</p>
+
+  <div class="tags">
+    <span class="tag tag-green">Cybersecurity</span>
+    <span class="tag tag-orange">C++</span>
+
+  </div>
+
+  <a href="projects/iwsp.html" class="view-btn">View Project</a>
+</div>
+
+      <!-- Example Project Card -->
+      <div class="project-card" data-tags="networking analysis nmap">
+        <h3>Info Sec</h3>
+        <p>Add
+        </p>
+
+        <div class="tags">
+          <span class="tag tag-green">Networking</span>
+          <span class="tag tag-green">Cybersecurity</span>
+          <span class="tag tag-blue">Nmap</span>
+        </div>
+
+        <div class="links">
+          <a href="/Projects/pentest.html" class="view-btn">View Report</a>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+  
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    © 2025 Matthew Margosian • Cybersecurity & Software Engineering
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+-------------------------------------------------------------------------------------
+/* ===== GLOBAL STYLES ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.8; /* easier to read */
+  background: #f5f5f5;
+  color: #222;
+  font-size: 16px;
+  padding: 0;
+}
+
+/* ===== HEADINGS ===== */
+h2 {
+  text-align: center;
+  font-size: 2.2em;
+  margin: 50px 0 25px;
+  color: #1a1a1a;
+  line-height: 1.2;
+}
+
+h3 {
+  margin-bottom: 12px;
+  color: #222;
+  font-size: 1.3em;
+  line-height: 1.3;
+}
+
+/* ===== HEADER HERO ===== */
+.hero {
+  text-align: center;
+  padding: 50px 20px;
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.hero p {
+  margin: 12px 0;
+  font-size: 1.1em;
+}
+
+.hero a {
+  color: #4caf50;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.05em;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  background: #333;
+  padding: 12px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.navbar a {
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 8px 14px;
+  font-size: 1em;
+  transition: background 0.3s;
+}
+
+.navbar a:hover {
+  background: #4caf50;
+  border-radius: 5px;
+}
+
+/* ===== CARDS (EDUCATION / SKILLS / PROJECTS) ===== */
+.edu-container, .edu-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.edu-column {
+  flex: 1;
+  min-width: 250px;
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+.edu-card p, .edu-card ul {
+  margin: 10px 0;
+  font-size: 1em;
+  line-height: 1.6;
+}
+
+.edu-card ul {
+  padding-left: 22px;
+}
+
+.edu-buttons {
+  margin: 15px 0;
+}
+
+.edu-buttons button {
+  font-size: 1em;
+  padding: 10px 18px;
+  margin-right: 5px;
+  border: none;
+  border-radius: 6px;
+  background: #4caf50;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.edu-buttons button:hover {
+  background: #45a049;
+}
+
+/* ===== NETWORK TOOLS ===== */
+.tool-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 6px 0;
+}
+
+.tool-row span {
+  font-size: 1em;
+  width: 48%;
+  background: #f0f0f0;
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 500;
+  color: #333;
+}
+
+/* ===== MODALS ===== */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  overflow: auto;
+}
+
+.modal-content {
+  background: #fff;
+  width: 90%;
+  max-width: 900px;
+  height: 80%;
+  margin: 5% auto;
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-content iframe {
+  flex: 1;
+  width: 100%;
+  border: none;
+}
+
+.close {
+  align-self: flex-end;
+  font-size: 28px;
+  cursor: pointer;
+  color: #333;
+}
+
+/* ===== PROJECTS ===== */
+#projects {
+  padding: 5px 20px;
+  background: #f5f5f5;
+}
+
+#searchBar {
+  width: 100%;
+  max-width: 100%;
+  padding: 14px 18px;
+  margin: 0 0 40px 0;
+  display: block;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1.1em;
+  box-sizing: border-box;
+}
+
+/* ===== GRID: 5 CARDS ACROSS ===== */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+
+.project-card {
+  background: #fff;
+  padding: 22px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-align: center;
+  height: auto; /* auto so text fits */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+.project-card h3 {
+  margin-bottom: 10px;
+  font-size: 1.6em;
+  color: #1a1a1a;
+}
+
+.project-card p {
+  font-size: 1.05em;
+  color: #444;
+  line-height: 1.5;
+}
+
+.tags {
+  margin-top: 12px;
+}
+
+.tag {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  color: #fff;
+  margin: 3px 3px 0 0;
+}
+
+/* TAG COLORS */
+.tag-green { background: #4caf50; }
+.tag-blue { background: #2196f3; }
+.tag-orange { background: #ff9800; }
+
+/* ===== FOOTER ===== */
+footer {
+  text-align: center;
+  padding: 25px 10px;
+  background: #1a1a1a;
+  color: #fff;
+  margin-top: 60px;
+}
+
+/* ===== RESPONSIVE GRID ===== */
+@media (max-width: 1400px) { .project-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 1200px) { .project-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 900px) { .project-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .project-grid { grid-template-columns: 1fr; } }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .edu-container, .edu-columns {
+    flex-direction: column;
+  }
+
+  .tool-row {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .tool-row span {
+    width: 100%;
+  }
+}
+-------------------------------------------------------------------------------------------------
+
+about:["mmargosian@kali:~$ whois mattmargosian.com",
+        "<a href='' target='' class='clickable'></a>  I am a dedicated cybersecurity professional and lifelong learner with a strong technical foundation and a passion for helping organizations and individuals improve their digital privacy and security. My expertise spans penetration testing, network and web application security, cryptography, incident response, and threat assessment, and I have actively apply these skills in both professional and educational environments.",
+        "\n <a href='' target='' class='clickable'></a>Beyond technical ability, I am deeply committed to community outreach and education, having hosted cyber awareness events, volunteered through school and church initiatives, and led youth teams. I value direct, personal connections and authentic collaboration, believing that the most meaningful impact comes from relationships with others to solve real-world problems and fulfilling God’s will. Whether I am outdoors camping, fishing, working out at the gym, or attending a live music event, I approach life with the same curiosity, discipline, and creativity that I bring to my cybersecurity work.",
+        "\n <a href='' target='' class='clickable'></a>My ultimate goal is to use technology to help others adapt and foster a more connected, sustainable way of life. "
+       
+    ],

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CyberSuite Web Security Application</title>
+
+  <!-- External CSS -->
+   <link rel="stylesheet" href="../projects_css/main.css">
+</head>
+<body>
+
+  <!-- HERO SECTION -->
+  <header class="hero">
+    <h1>CyberSuite Security Application</h1>
+  </header>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+  <a href="../kalihome.html#projects?cat=software" class="back-link">X</a>
+
+  </nav>
+
+  <!-- MAIN PROJECT SECTION -->
+  <main class="project-section">
+
+  <h2>May 2025 – <a href="https://www.armcybersuite.com" target="_blank">armcybersuite.com</a></h2>
+
+
+  <p>
+    Worked in with a team  to develop a full-stack cybersecurity platform designed to strengthen user security through 
+    intelligent password generation, automated vulnerability scanning, secure file handling, and real-time 
+    browser-based threat detection. The system combines encryption, backend analysis tools, and 
+    user-friendly interfaces to provide a centralized security dashboard suitable for both everyday users 
+    and technical professionals. My role was the backend engineer of this web application.
+  </p>
+
+
+  <h3>Tools</h3>
+  <h4>Backend & Infrastructure</h4>
+  <ul>
+    <li><strong>Node.js & Express.js / JavaScript</strong> – Core API routing and business logic</li>
+    <li><strong>MySQL / MariaDB</strong> – Relational database storing user keys and metadata</li>
+    <li><strong>Laravel / PHP</strong> – Authentication, authorization, and secure session handling</li>
+  <li><strong>DigitalOcean</strong> – Cloud hosting and server deployment</li>
+<li><strong>VS Code</strong> – Primary development environment</li>
+<li><strong>GitHub</strong> – Version control and collaboration</li>
+<li><strong>CertLab</strong> – Certificate and vulnerability testing environment</li>
+
+   
+  </ul>
+
+  <h4>Frontend & Browser Integration</h4>
+  <ul>
+    <li><strong>HTML / CSS / JavaScript </strong> – Dashboard, user interface, and result visualization</li>
+    <li><strong>CryptoJS</strong> – SHA-256 hashing and AES encryption for user-controlled password generation</li>
+    <li><strong>Chrome Extension API</strong> – URL interceptor and push-to-scanner communication</li>
+  </ul>
+
+  <h3>Creating Session & Password Generation</h3>
+  <p>
+     Users select a keyword and 
+    number, which are then combined with the authenticated user’s internal 
+   UID. These values are passed through a one-way hashing mechanism to produce a secure, repeatable password.
+  </p>
+  <p>
+    Because the system does not store actual passwords, users regenerate them at any time 
+    using the same inputs. This approach eliminates the risk associated with database breaches, as only 
+    the keyword and number—never the final password—are stored. All user metadata is protected through 
+    encrypted Laravel sessions and strict database constraints.
+  </p>
+   <div class="slider-container" id="slider2">
+      <div class="slides">
+        <img src="../images/Z_images/0.png" alt="VM Scan Screenshot 1" class="slide-image">
+        <img src="../images/Z_images/p1.png" alt="VM Scan Screenshot 1" class="slide-image">
+        <img src="../images/Z_images/p2.png" alt="VM Scan Screenshot 1" class="slide-image">
+       
+      </div>
+    <a class="prev" onclick="plusSlides('slider2', -1)">&#10094;</a>
+<a class="next" onclick="plusSlides('slider2', 1)">&#10095;</a>
+
+    </div>
+
+  <h3>Password Saving & Database Management</h3>
+  <p>
+    When users save an entry, CyberSuite stores the structured components required to later regenerate 
+    the password:
+  </p>
+  <ul>
+    <li><code>entry_name</code> – A human-readable label for the account</li>
+    <li><code>keyword</code> – User-chosen word, stored securely</li>
+    <li><code>number</code> – User-chosen numerical input</li>
+    <li><code>user_id</code> – Foreign-key reference to the authenticated user</li>
+  </ul>
+  <p>
+    All entries can be viewed, edited, deleted, or re-generated. The model relationships enforce 
+    referential integrity, and the controller handles validation, encryption, and safe database writes.
+  </p>
+ <div class="slider-container" id="slider1">
+      <div class="slides">
+        <img src="../images/Z_images/00.png" alt="VM Scan Screenshot 1" class="slide-image">
+        <img src="../images/Z_images/sp1.png" alt="VM Scan Screenshot 1" class="slide-image">
+   
+      </div>
+    <a class="prev" onclick="plusSlides('slider1', -1)">&#10094;</a>
+<a class="next" onclick="plusSlides('slider1', 1)">&#10095;</a>
+
+    </div>
+  <h3>Security Web Scanner</h3>
+<p>
+  The CyberSuite Web Scanner performs a multi-layer security assessment that combines 
+  static inspection, active probing, cryptographic analysis, and external threat 
+  intelligence. When a URL is submitted, the Node.js backend aggregates results from 
+  multiple scanners and returns a unified, human-readable security posture report.
+</p>
+
+<h4>Scanner Capabilities</h4>
+<ul>
+  <li>
+    <strong>Phishing & Malware Detection</strong> – Integrates the 
+    Google Safe Browsing API to identify malicious, deceptive, or compromised URLs.
+  </li>
+  <li>
+    <strong>Domain Intelligence</strong> – Collects registrar data, domain age, 
+    creation date, and expiration to evaluate legitimacy and detect newly registered, 
+    high-risk domains.
+  </li>
+  <li>
+    <strong>Input-Based Vulnerability Testing</strong> – Checks for unsafe handling 
+    of parameters that may expose the site to:
+    <ul>
+      <li>SQL Injection indicators</li>
+      <li>Reflected or stored XSS markers</li>
+      <li>Unsanitized user input embedded in HTML responses</li>
+    </ul>
+  </li>
+  <li>
+    <strong>SSL/TLS & Certificate Analysis</strong> – Validates the entire 
+    certificate chain, issuer, and expiration. Detects weak ciphers and outdated protocol support.
+  </li>
+  <li>
+    <strong>TLS Protocol Negotiation</strong> – Determines if the server allows 
+    insecure versions such as SSLv2, SSLv3, TLS 1.0, or deprecated ciphers.
+  </li>
+  <li>
+    <strong>Open Port Enumeration</strong> (Nmap) – Identifies open ports, banners, 
+    exposed services such as RDP/SSH, and potential attack surfaces.
+  </li>
+</ul>
+
+<h4>Scoring & Risk Analysis</h4>
+<p>
+  CyberSuite uses a weighted scoring model based on NIST standards 
+  (SP 800-40, 800-41, 800-52, and 800-177). Each component contributes to a 
+  final Security Posture Score that reflects the site's 
+  trustworthiness and technical risk.
+</p>
+
+
+<p>
+  The final output consolidates all scanner data — vulnerability indicators, 
+  certificate strength, protocol support, port exposure, domain intelligence, 
+  and phishing reputation — into a clean, readable summary inside the dashboard.
+</p>
+<div class="slider-container" id="slider3">
+      <div class="slides">
+        <img src="../images/Z_images/000.png" alt="VM Scan Screenshot 1" class="slide-image">
+        <img src="../images/Z_images/s1.png" alt="VM Scan Screenshot 1" class="slide-image">
+        <img src="../images/Z_images/s2.png" alt="VM Scan Screenshot 1" class="slide-image">
+        <img src="../images/Z_images/s3.png" alt="VM Scan Screenshot 1" class="slide-image">
+        <img src="../images/Z_images/s4.png" alt="VM Scan Screenshot 1" class="slide-image">
+       
+      </div>
+    <a class="prev" onclick="plusSlides('slider3', -1)">&#10094;</a>
+<a class="next" onclick="plusSlides('slider3', 1)">&#10095;</a> </div>
+    </div>
+
+  <h3>Chrome Extension Integration</h3>
+  <p>
+    The Chrome extension provides convient password lookup and generation.
+  <div class="slider-container" id="slider4">
+    <div class="slides">
+      <img src="../images/Z_images/Ex.png" alt="CyberSuite Architecture Diagram" class="slide-image">
+    
+    </div>
+  </div>
+
+  <h3>Architecture Diagram</h3>
+  <p>
+    The visuals below illustrate the high-level CyberSuite architecture, showing interaction between the 
+    user interface, backend API, authentication layers, and security tools.
+  </p>
+
+  <div class="slider-container" id="slider4">
+    <div class="slides">
+      <img src="../images/Z_images/ad.png" alt="CyberSuite Architecture Diagram" class="slide-image">
+     
+    </div>
+  </div>
+
+  <h3>Conclusion</h3>
+  <p>
+    CyberSuite demonstrates a modern, modular approach to personal cybersecurity. By combining 
+    deterministic password generation, automated vulnerability scanning, encryption, secure database 
+    design, and browser-integrated real-time verification, this project showcases practical cybersecurity 
+    engineering and full-stack development. It illustrates how multiple defensive tools can be unified into 
+    a single, user-focused application to enhance everyday digital safety.
+  </p>
+
+</main>
+ <script>
+const sliders = {};
+
+function showSlides(sliderId, n) {
+  const container = document.getElementById(sliderId);
+  const slides = container.getElementsByClassName("slide-image");
+
+  if (!sliders[sliderId]) sliders[sliderId] = 0;
+
+  if (n >= slides.length) sliders[sliderId] = 0;
+  if (n < 0) sliders[sliderId] = slides.length - 1;
+
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+
+  slides[sliders[sliderId]].style.display = "block";
+}
+
+function plusSlides(sliderId, n) {
+  sliders[sliderId] += n;
+  showSlides(sliderId, sliders[sliderId]);
+}
+
+// Initialize both sliders
+showSlides('slider1', 0);
+showSlides('slider2', 0);
+showSlides('slider3', 0);
+</script>

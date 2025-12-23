@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Business Rules — Personal Finance Database Project</title>
+
+  <!-- External CSS (keep styling separate) -->
+   <link rel="stylesheet" href="../projects_css/main.css">
+  <style>
+    /* Minimal inline helpers so the page looks OK even before db.css is added */
+    .team-list { margin-bottom: 18px; }
+    .muted { color: #666; font-size: 0.95rem; }
+    .code-box { background:#1e1e1e; color:#dcdcdc; padding:16px; border-radius:8px; overflow:auto; max-height:420px; font-family: "Courier New", monospace; font-size:13px; border:1px solid #444; box-shadow: inset 0 0 10px rgba(0,0,0,0.3); }
+    .erd-row { display:flex; gap:16px; flex-wrap:wrap; margin-bottom:18px; }
+    .erd-card { flex:1 1 280px; background:#fff; border-radius:8px; padding:12px; box-shadow:0 2px 6px rgba(0,0,0,0.06); text-align:center; }
+    .btn { background:#2196f3; color:white; border:none; padding:8px 12px; border-radius:6px; cursor:pointer; }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <h1>Personal Finance Database</h1>
+    <p class="muted">Business Rules, ER Design, SQL schema & sample data</p>
+  </header>
+
+  <!-- NAV -->
+  <nav class="navbar">
+    <a href="../kalihome.html#projects?cat=software" class="back-link">X</a>
+  </nav>
+
+  <main class="project-section">
+
+    <!-- Intro -->
+    <h2>February 2022</h2>
+
+    <p>
+      Designed and implemented a personal finance relational database to track user accounts, transactions,
+      expenses, bills, and food purchases. The database supports multiple accounts per user, links transactions
+      to accounts, and models expenses (bills/food) with many-to-many relationships where appropriate.
+    </p>
+
+    <!-- Business Rules -->
+    <h3>Business Rules</h3>
+    <ol>
+      <li>Users may have multiple accounts. Each <strong>Account</strong> has a unique id, name, card type, balance and refresh date.</li>
+      <li>Each <strong>Transaction</strong> belongs to exactly one account and stores amount, payee, date, and running balance.</li>
+      <li>Expenses can consist of many food purchases or bills; multiple transactions can be associated with the same expense.</li>
+      <li>Food and Bills are modeled as separate entities and connected to Expense entries.</li>
+    </ol>
+
+    <!-- Conceptual design -->
+    <h3>Conceptual → Logical → Physical</h3>
+    <div class="erd-row">
+      <div class="erd-card">
+        <h4>Conceptual ERD</h4>
+
+        <img src="../images/foc_images/444.png" alt="Conceptual ERD" style="max-width:100%;border-radius:6px;">
+      </div>
+
+      <div class="erd-card">
+        <h4>Logical ERD</h4>
+        
+        <img src="../images/foc_images/555.png" alt="Logical ERD" style="max-width:100%;border-radius:6px;">
+      </div>
+
+      <div class="erd-card">
+        <h4>Physical ERD</h4>
+    
+        <img src="../images/foc_images/777.png" alt="Physical ERD" style="max-width:100%;border-radius:6px;">
+      </div>
+    </div>
+
+    <!-- Refined ER notes -->
+    <h3>Refining the ER Design (notes)</h3>
+    <ul>
+      <li><strong>Account (1) — (N) Transaction:</strong> transactions require an account.</li>
+      <li><strong>Transaction (M) — (M) Expense:</strong> a transaction can be linked to multiple expense items (food/bill), and expenses can involve multiple transactions.</li>
+      <li>Food and Bills are separate entities with their own attributes (date, type, amount) and are referenced by Expense rows.</li>
+    </ul>
+
+    <!-- SQL Schema -->
+    <h3>SQL — Schema</h3>
+    <p class="muted">Click <strong>Show SQL</strong> to expand the full schema + sample inserts.</p>
+    <button class="btn" onclick="toggleBox('sql-schema')">Show SQL</button>
+
+    <div id="sql-schema" class="code-box" style="display:none; margin-top:12px;">
+-- DROP & CREATE DATABASE
+DROP DATABASE IF EXISTS margosia003_finalProject;
+CREATE DATABASE IF NOT EXISTS margosia003_finalProject;
+USE margosia003_finalProject;
+
+-- ACCOUNT TABLE
+CREATE TABLE account (
+  acc_id VARCHAR(50) PRIMARY KEY,
+  acc_name VARCHAR(50),
+  acc_amount VARCHAR(50),
+  acc_card VARCHAR(50),
+  acc_date DATE
+);
+
+-- TRANSACTION TABLE
+CREATE TABLE transaction (
+  tran_num VARCHAR(50) PRIMARY KEY,
+  acc_id VARCHAR(50),
+  tran_amount FLOAT,
+  paid VARCHAR(50),
+  tran_date DATE,
+  bal_amount VARCHAR(50)
+);
+
+-- BILLS TABLE
+CREATE TABLE bills (
+  bill_date DATE PRIMARY KEY,
+  bill_type VARCHAR(50),
+  bill_amount FLOAT
+);
+
+-- FOOD TABLE
+CREATE TABLE food (
+  food_date DATETIME PRIMARY KEY,
+  food_type VARCHAR(50),
+  food_amount FLOAT
+);
+
+-- EXPENSE TABLE (links transactions to food or bills)
+CREATE TABLE expense (
+  tran_num VARCHAR(50),
+  bill_date DATE,
+  food_date DATETIME,
+  exp_type VARCHAR(50)
+);
+
+-- SAMPLE DATA INSERTS (truncated here; full data present in project files)
+USE margosia003_finalProject;
+INSERT INTO account (acc_id, acc_name, acc_amount, acc_card, acc_date) VALUES
+('Checkings 01','Matt.M.111', '$13,706.80', 'Visa Debit', '2022-03-01' ),
+('CMA 01','Matt.M.111', '$887.88', 'Visa Debit', '2022-03-01');
+
+INSERT INTO transaction (tran_num, acc_id, tran_amount, paid, tran_date, bal_amount ) VALUES
+('0000','Checkings 01',10000, 'Deposit',  '2022-01-01', '$10,100'),
+('0001','CMA 01',900, 'Deposit',  '2022-01-01', '$10,000');
+
+INSERT INTO bills ( bill_date, bill_type, bill_amount) VALUES
+('2022-01-01','Rent', 400),
+('2022-01-02','gas', 100);
+
+INSERT INTO food (food_date, food_type, food_amount) VALUES
+('2022-01-01 01:00:00','Chicken Breasts', 7),
+('2022-01-02 06:00:00','Burger Patties', 8);
+
+-- FOREIGN KEYS
+ALTER TABLE transaction
+  ADD FOREIGN KEY (acc_id) REFERENCES account (acc_id);
+
+ALTER TABLE expense
+  ADD FOREIGN KEY (tran_num) REFERENCES transaction (tran_num);
+
+ALTER TABLE expense
+  ADD FOREIGN KEY (food_date) REFERENCES food (food_date);
+
+ALTER TABLE expense
+  ADD FOREIGN KEY (bill_date) REFERENCES bills (bill_date);
+    </div>
+
+    <!-- Queries -->
+    <h3>Example Queries</h3>
+    <ol>
+      <li><strong>How much money did I spend in February?</strong></li>
+      <li><strong>Did I spend more money on bills or food this year?</strong></li>
+      <li><strong>How many times did I go to Giant Eagle and how much did I spend?</strong></li>
+      <li><strong>What did I spend money on in January?</strong></li>
+      <li><strong>How much money did I spend on my Credit, Debit, and CMA cards?</strong></li>
+      <li><strong>What did I buy on my Debit Cards this year that cost more than $5?</strong></li>
+    </ol>
+
+
+<div class="slider-container" id="slider1">
+    <div class="slides">
+      <img src="../images/foc_images/33.png" class="slide-image" alt="DB Queries">
+      <img src="../images/foc_images/34.png" class="slide-image" alt="DB Queries">
+      <img src="../images/foc_images/35.png" class="slide-image" alt="DB Queries">
+      <img src="../images/foc_images/36.png" class="slide-image" alt="DB Queries">
+      <img src="../images/foc_images/37.png" class="slide-image" alt="DB Queries">
+      <img src="../images/foc_images/38.png" class="slide-image" alt="DB Queries">
+      
+    </div>
+    <button class="prev" onclick="plusSlides('slider1', -1)">&#10094;</button>
+    <button class="next" onclick="plusSlides('slider1', 1)">&#10095;</button>
+  </div>
+    <!-- Deliverables / Files -->
+    <h3>Deliverables</h3>
+    <ul>
+      <li>ERD diagrams (conceptual, logical, physical) — images included above</li>
+      <li>Full SQL schema and seed data (see <code>margosia003_finalProject.sql</code>)</li>
+      <li>Report describing business rules and mapping to the physical design</li>
+    </ul>
+
+    <hr>
+
+
+
+  </main>
+
+<script>
+function toggleBox(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.style.display = (el.style.display === 'none' || el.style.display === '') ? 'block' : 'none';
+}
+const sliders = {};
+
+function showSlides(sliderId, n) {
+  const container = document.getElementById(sliderId);
+  const slides = container.getElementsByClassName("slide-image");
+
+  if (!sliders[sliderId]) sliders[sliderId] = 0;
+
+  if (n >= slides.length) sliders[sliderId] = 0;
+  if (n < 0) sliders[sliderId] = slides.length - 1;
+
+  for (let s of slides) {
+    s.style.display = "none";
+  }
+  slides[sliders[sliderId]].style.display = "block";
+}
+
+function plusSlides(sliderId, n) {
+  sliders[sliderId] += n;
+  showSlides(sliderId, sliders[sliderId]);
+}
+
+// Initialize all sliders
+showSlides('slider1', 0);
+showSlides('slider2', 0);
+showSlides('slider3', 0);
+
+
+</script>
+</body>
+</html>

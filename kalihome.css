@@ -1,0 +1,297 @@
+:root { --bg:#0b0f12; --panel:#0f1720; --muted:#9bdc9b; --accent:#44ffb0; --folder:#2aa8ff; --card:#0f1620; --glass:rgba(255,255,255,0.04); --text:#d9e6ea; --mono:"Fira Mono","SFMono-Regular",Menlo,Monaco,monospace; }
+
+*{box-sizing:border-box} html,body{height:100%}
+body{margin:0;background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url('images/Z_images/kali-wallpaper-2015-v1-1-0.webp') no-repeat center center fixed;background-size:cover;color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;font-size:clamp(15px,1.2vw,18px);line-height:1.5}
+
+/* Terminal Header */
+.terminal-header{background:linear-gradient(90deg,#020406 0%,#07111a 100%);border-bottom:1px solid rgba(255,255,255,0.04);padding:8px 14px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:2000}
+.term-controls{display:flex;gap:6px}
+.term-controls span{width:12px;height:12px;border-radius:99px;display:inline-block;box-shadow:0 1px 0 rgba(0,0,0,0.6)}
+.term-controls .red{background:#ff5f57} .term-controls .yellow{background:#ffbd2e} .term-controls .green{background:#28c840}
+.term-content{display:flex;align-items:center;gap:18px;width:100%;justify-content:space-between}
+.term-left{color:var(--muted);font-family:var(--mono);font-weight:600}
+.term-left .cwd{color:var(--accent);margin-left:6px}
+.term-nav{display:flex;gap:8px;flex-wrap:wrap}
+.term-nav .dir-btn{background:transparent;border:1px solid rgba(255,255,255,0.03);color:var(--folder2);padding:6px 10px;border-radius:6px;cursor:pointer;font-family:var(--mono);font-weight:600;transition:.2s}
+.term-nav .dir-btn:hover{background:rgba(255,255,255,0.02);transform:translateY(-1px)}
+
+.desktop{padding:28px;max-width:1300px;margin:0 auto}
+.view{display:none} .view.active{display:block}
+
+/* Home Explorer */
+.home-explorer{display:grid;grid-template-columns:220px 1fr;gap:18px}
+.explorer-list{background:var(--panel);border-radius:10px;border:1px solid var(--glass);padding:14px;min-height:400px}
+.explorer-list ul{list-style:none;padding:0;margin:0}
+.explorer-list li{padding:10px 12px;margin-bottom:8px;border-radius:6px;cursor:pointer;font-family:var(--mono);font-weight:600;color:var(--folder2);border:1px solid rgba(255,255,255,0.03);background:transparent;transition:.2s}
+.explorer-list li:hover{background:rgba(255,255,255,0.02);transform:translateY(-1px)}
+.explorer-list li.active{background:linear-gradient(90deg,rgba(68,255,176,0.06),rgba(42,168,255,0.03));border-color:rgba(68,255,176,0.12)}
+.explorer-preview{background:var(--card); padding: 0px 18px;border-radius:10px;border:1px solid var(--glass);min-height:500px;overflow-y:auto;font-family:var(--mono);color:var(--muted);white-space:pre-line}
+
+/* Projects Shell */
+.projects-shell{display:grid;grid-template-columns:220px 1fr;gap:18px;}
+.project-list{background:var(--panel);border-radius:10px;border:1px solid var(--glass);padding:14px;min-height:400px}
+.project-list ul{list-style:none;padding:0;margin:0}
+.project-list li{padding:10px 12px;margin-bottom:8px;border-radius:6px;cursor:pointer;font-family:var(--mono);font-weight:600;color:var(--folder2);border:1px solid rgba(255,255,255,0.03);background:transparent;transition:.2s}
+.project-list li:hover{background:rgba(255,255,255,0.02);transform:translateY(-1px)}
+.project-list li.active{background:linear-gradient(90deg,rgba(68,255,176,0.06),rgba(42,168,255,0.03));border-color:rgba(68,255,176,0.12)}
+
+.project-list ul::-webkit-scrollbar{width:6px}
+.project-list ul::-webkit-scrollbar-track{background:rgba(255,255,255,0.02);border-radius:4px}
+.project-list ul::-webkit-scrollbar-thumb{background:rgba(68,255,176,0.4);border-radius:4px}
+.project-list ul::-webkit-scrollbar-thumb:hover{background:rgba(68,255,176,0.6)}
+
+.project-preview{background:var(--card); padding: 0px 18px;border-radius:10px;border:1px solid var(--glass);min-height:500px;overflow-y:auto;font-family:var(--mono);color:var(--muted);white-space:pre-line}
+
+/* Cards */
+.single-card{background:linear-gradient(90deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:18px;border-radius:10px;border:1px solid var(--glass)}
+.cols.three{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.kv{display:flex;justify-content:space-between;padding:6px 0}
+.tool-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.tool-grid span{background:rgba(255,255,255,0.02);padding:8px;border-radius:6px;text-align:center}
+
+.clickable{color:#0f0;cursor:pointer;text-decoration:underline}
+
+/* Modal */
+.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);display:flex;justify-content:center;align-items:center;z-index:2000;transition:.3s}
+.modal-content{position:relative;background:#1e1e1e;padding:20px;border-radius:8px;width:80%;max-width:900px;height:80%;display:flex;flex-direction:column;overflow:hidden;transition:.3s}
+.modal.fullscreen .modal-content{width:100%;max-width:100%;height:100%;border-radius:0;padding:10px}
+.modal-content iframe{width:100%;height:100%;border:none;border-radius:4px}
+.modal .close,.modal .fullview{position:absolute;top:10px;padding:5px 10px;border-radius:4px;cursor:pointer;font-size:14px;z-index:2100}
+.modal .close{right:10px;color:#fff;background:none;border:none}
+.modal .fullview{left:10px;background:#333;color:#0f0;border:1px solid #0f0}
+
+/* Kali Topbar */
+.kali-topbar{display:flex;justify-content:space-between;align-items:center;background:#2A394A;color:#fff;padding:5px 15px;font-family:'Ubuntu',monospace;font-size:14px}
+.topbar-left{display:flex;align-items:center;gap:10px}
+.menu{font-weight:bold;cursor:pointer}
+.open-windows .window{background:#2e2e2e;padding:3px 8px;border-radius:3px;margin-right:5px;cursor:pointer}
+.open-windows .window.active{background:#0f0;color:#000;font-weight:bold}
+.topbar-right .tray{display:flex;align-items:center;gap:10px}
+.clock{font-variant-numeric:tabular-nums}
+.kali-logo-img{width:18px;height:18px;object-fit:contain}
+.kali-line-img{width:18px;height:18px;object-fit:contain;margin-left: -10px;margin-right: -10px;}
+
+/* Categories (No Arrows) */
+.category{margin-bottom:12px}
+.cat-toggle{font-size: 100%;  padding:10px 12px;margin-bottom:8px;border-radius:6px;cursor:pointer;font-family:var(--mono);font-weight:600;color:var(--folder2);border:1px solid rgba(255,255,255,0.03);background:transparent;transition:.2s}
+.cat-toggle:hover{background:rgba(255,255,255,0.02);transform:translateY(-1px)}
+.cat-toggle.open{background:linear-gradient(90deg,rgba(68,255,176,0.06),rgba(42,168,255,0.03));border-color:rgba(0, 0, 0, 0.12);color:var(--accent)}
+.cat-list{list-style:none;margin:8px 0 10px;padding-left:8px;padding-right:2px;display:none;border-left:2px solid rgba(255,255,255,0.05)}
+.cat-list li{font-size:85%; padding:10px 12px;margin-bottom:8px;border-radius:6px;cursor:pointer;font-family:var(--mono);font-weight:600;color:var(--folder2);border:1px solid rgba(255,255,255,0.03);background:transparent;transition:.2s}
+.cat-list li:hover{background:rgba(255,255,255,0.02);transform:translateY(-1px)}
+.cat-list li.active{background:linear-gradient(90deg,rgba(68,255,176,0.06),rgba(42,168,255,0.03));border-color:rgba(68,255,176,0.12)}
+
+
+
+.dir-row {
+  display:flex;
+  gap:28px;       /* smaller gap between dirs */
+  margin:4px 0; 
+  margin-top: -20px; /* less top/bottom space */
+}
+
+.dir {
+  cursor:pointer;
+  color:var(--folder);
+  font-weight:600;
+  
+}
+
+.line {
+  margin:0 0 4px 0; /* tight line spacing */
+    margin-top: -60px;
+  
+}
+
+.cat-output div {
+  margin:2px 0; 
+/* tighter spacing between lines */
+}
+
+
+/* WHOAMI terminal specific styling */
+
+.terminal-view {
+
+
+  margin: 0; 
+  padding:12px;
+  font-family:var(--mono);
+  color:var(--muted);
+  white-space:pre-line;
+  
+  
+}
+.whoami-view {
+    padding: 0 8px;              /* minimal horizontal padding */
+    margin: 0;
+    margin-top: -20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 2px;                    /* tight line spacing */
+}
+@font-face {
+  font-family: 'dash';
+  src: url('fonts/dash.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.whoami-view div:first-child {
+    color: #44d7ff;         /* light blue */
+    font-size: 3rem;        /* larger first line */
+    margin: 0;
+    letter-spacing: 0.35em; /* space out letters */
+    font-family: 'dash', monospace;
+    text-transform: uppercase; /* optional, makes all caps */
+  
+}
+
+
+.whoami-view div:not(:first-child) {
+    margin: 0;
+    line-height: 1.2;            /* compact lines */
+    font-size: 0.95rem;
+}
+
+.whoami-view .line {
+    height: 2px;                 /* thickness of the line */
+    background-color: #44d7ff;   /* light blue */
+    width: 350px;                  /* line width (adjust as needed) */
+    margin: 0 auto 8px auto;      /* center it, add spacing below */
+}
+
+.highlight {
+    background-color:#6af0ff; color:#0b0f12; padding:.5px .5px; width:450px; 
+}
+
+
+
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
+}
+
+.terminal-line {
+  font-family: monospace;
+  color: #44ffb0; /* terminal green */
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.blinking {
+  animation: blink 2s step-start infinite;
+  border: none;
+  background-color: #44ffb0; /* green block */
+  width: 9px;
+  height: 1.2em;
+  padding: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  outline: none;
+  font-family: monospace;
+  font-size: 1rem;
+  color: #000000; /* text same color as terminal text */
+  caret-color: #000000; /* make the native caret same color */
+}
+
+/* optional: remove number input arrow styles in some browsers */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.clickable[data-file='honors'] {
+  color: #44ffb0;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.modal {
+  position: fixed;
+  top:0; left:0; width:100%; height:100%;
+  background: rgba(0,0,0,0.8);
+  display:flex; justify-content:center; align-items:center;
+  z-index:2000;
+}
+
+.modal-content {
+  background:#0f1620; color:#d9e6ea;
+  padding:20px; border-radius:8px; max-width:500px; width:90%;
+  position:relative;
+}
+
+.modal-content h2 {
+  color:#44ffb0;
+}
+
+.modal-content ul {
+  list-style:none; padding:0;
+}
+
+.modal-content li {
+  padding:4px 0;
+}
+
+.modal-content .close {
+  position:absolute; top:10px; right:10px;
+  background:#44ffb0; color:#0b0f12; border:none; border-radius:4px;
+  padding:4px 8px; cursor:pointer;
+}
+
+.explorer-separator2{
+  height:2px;
+  background:#0f1829;
+  opacity:0.6;
+  width: 100%;
+}
+
+.explorer-separator{
+  height:1px;
+  background:#000;
+  opacity:0.6;
+  margin-bottom: .5em;
+  width: 100%;
+}
+/* Header text only */
+/* Top line with icon, centered title, right controls */
+/* Top line with icon, centered title, right controls */
+.termnav-header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-top: 4px;      /* smaller top margin */
+     /* optional, tighten space below */
+  padding: 0px 0;       /* reduce vertical padding */
+}
+
+/* Menu bar below, separate */
+.termnav-menu {
+  display: block;
+  margin-top: -20px;      /* smaller space from header */
+  margin-bottom: -20px;   /* optional, reduce spacing below menu */
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+}
+
+
+/* Icon on left */
+
+
+/* Center title */
+.termnav-title{
+  margin:0 auto;       /* centers between left and right */
+  white-space:nowrap;
+  color:#fff;
+  font-family:var(--mono);
+}
+
+/* Right controls */
+.termnav-controls{
+  white-space:nowrap;
+  color:#fff;
+}
+

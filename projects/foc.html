@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Failover Cluster Lab – CIS375</title>
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="../projects_css/main.css">
+</head>
+<body>
+
+<header class="hero">
+  <h1>Failover Cluster Lab Report</h1>
+  <p>iSCSI Storage • Failover Clustering • Hyper-V High Availability</p>
+</header>
+
+<nav class="navbar">
+ <a href="../kalihome.html#projects?cat=network" class="back-link">X</a>
+</nav>
+
+<main class="project-section">
+
+  <h2> April 2023</h2>
+  <p>
+    This project demonstrates iSCSI storage configuration, cluster creation, shared volumes, and Hyper-V high availability across multiple nodes.
+  </p>
+
+
+
+  <!-- PART 1: ISCSI SETUP -->
+  <h3>Part 1 — Configuring iSCSI Storage</h3>
+  <ul>
+    <li>Created a 500GB iSCSI Virtual Disk</li>
+    <li>Added initiator IDs for both servers</li>
+    <li>Connected the target using the iSCSI Initiator</li>
+    <li>Verified storage through Disk Management</li>
+  </ul>
+
+  <!-- SLIDER 1 -->
+  <div class="slider-container" id="slider1">
+    <div class="slides">
+      <img src="../images/foc_images/1.png" class="slide-image" alt="iSCSI Setup 1">
+      <img src="../images/foc_images/2.png" class="slide-image" alt="iSCSI Setup 2">
+      <img src="../images/foc_images/3.png" class="slide-image" alt="iSCSI Setup 3">
+      <img src="../images/foc_images/4.png" class="slide-image" alt="iSCSI Setup 4">
+      <img src="../images/foc_images/5.png" class="slide-image" alt="iSCSI Setup 5">
+      <img src="../images/foc_images/6.png" class="slide-image" alt="iSCSI Setup 6">
+    </div>
+    <button class="prev" onclick="plusSlides('slider1', -1)">&#10094;</button>
+    <button class="next" onclick="plusSlides('slider1', 1)">&#10095;</button>
+  </div>
+
+  <!-- PART 2: FAILOVER CLUSTER -->
+  <h3>Part 2 — Creating the Failover Cluster</h3>
+  <ul>
+    <li>Added cluster nodes via Failover Cluster Manager</li>
+    <li>Ran validation report to confirm compatibility</li>
+    <li>Added iSCSI disk as a cluster shared volume</li>
+    <li>Created DNS entry for cluster access (ClassCluster)</li>
+  </ul>
+
+  <!-- SLIDER 2 -->
+  <div class="slider-container" id="slider2">
+    <div class="slides">
+      <img src="../images/foc_images/7.png" class="slide-image" alt="Cluster Setup 1">
+      <img src="../images/foc_images/8.png" class="slide-image" alt="Cluster Setup 2">
+      <img src="../images/foc_images/9.png" class="slide-image" alt="Cluster Setup 3">
+      <img src="../images/foc_images/10.png" class="slide-image" alt="Cluster Setup 4">
+       <img src="../images/foc_images/11.png" class="slide-image" alt="Cluster Setup 5">
+      <img src="../images/foc_images/12.png" class="slide-image" alt="Cluster Setup 6">
+       <img src="../images/foc_images/13.png" class="slide-image" alt="Cluster Setup 7">
+      <img src="../images/foc_images/14.png" class="slide-image" alt="Cluster Setup 8">
+       
+    </div>
+    <button class="prev" onclick="plusSlides('slider2', -1)">&#10094;</button>
+    <button class="next" onclick="plusSlides('slider2', 1)">&#10095;</button>
+  </div>
+
+  <!-- PART 3: HYPER-V -->
+  <h3>Part 3 — Hyper-V Highly Available VM</h3>
+  <ul>
+    <li>Installed Hyper-V on all servers</li>
+    <li>Created a new clustered virtual machine</li>
+    <li>Validated failover: VM successfully moved between nodes</li>
+  </ul>
+
+  <div class="slider-container" id="slider3">
+    <div class="slides">
+      <img src="../images/foc_images/16.png" class="slide-image" alt="Hyper-V 1">
+      <img src="../images/foc_images/17.png" class="slide-image" alt="Hyper-V 2">
+      <img src="../images/foc_images/18.png" class="slide-image" alt="Hyper-V 3">
+    </div>
+    <button class="prev" onclick="plusSlides('slider3', -1)">&#10094;</button>
+    <button class="next" onclick="plusSlides('slider3', 1)">&#10095;</button>
+  </div>
+
+  <h3>Conclusion</h3>
+  <p>
+    We successfully deployed a fully functional failover cluster with shared iSCSI storage, validated node communication, and created a highly available Hyper-V virtual machine. This project strengthened our skills in enterprise storage, clustering, DNS configuration, and server administration.
+  </p>
+
+</main>
+
+<script>
+const sliders = {};
+
+function showSlides(sliderId, n) {
+  const container = document.getElementById(sliderId);
+  const slides = container.getElementsByClassName("slide-image");
+
+  if (!sliders[sliderId]) sliders[sliderId] = 0;
+
+  if (n >= slides.length) sliders[sliderId] = 0;
+  if (n < 0) sliders[sliderId] = slides.length - 1;
+
+  for (let s of slides) {
+    s.style.display = "none";
+  }
+  slides[sliders[sliderId]].style.display = "block";
+}
+
+function plusSlides(sliderId, n) {
+  sliders[sliderId] += n;
+  showSlides(sliderId, sliders[sliderId]);
+}
+
+// Initialize all sliders
+showSlides('slider1', 0);
+showSlides('slider2', 0);
+showSlides('slider3', 0);
+</script>
+
+</body>
+</html>

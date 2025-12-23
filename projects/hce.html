@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cyber Awareness Event — Project</title>
+  <!-- DES-style CSS -->
+  <link rel="stylesheet" href="../projects_css/main.css">
+</head>
+<body>
+    <!-- ===== HERO ===== -->
+    <header class="hero">
+        <h1>Gannon Cyber Awareness</h1>
+    </header>
+
+  <nav class="navbar">
+    <a href="../kalihome.html#projects?cat=cyber" class="back-link">X</a>
+  </nav>
+
+  <main class="project-section" aria-labelledby="proj-title">
+    <h2 id="proj-title">November 2022</h2>
+
+    <p class="project-intro">
+      Organized and supported a campus Cyber Awareness program focused on cyber hygiene, threat awareness, and practical steps to protect personal and institutional data. The event combined expert talks, demonstrations, and an attendee self-assessment to reinforce learning.
+    </p>
+
+    <h3>My Role & Contributions</h3>
+    <ul>
+      <li>Coordinated logistics and speaker schedule with the organizing team.</li>
+      <li>Delivered the closing presentation summarizing key takeaways and actions.</li>
+      <li>Designed and launched a short cyber-hygiene self-assessment tool to engage attendees and measure learning outcomes.</li>
+      <li>Collected and summarized participant feedback to inform future awareness initiatives.</li>
+    </ul>
+
+    <h3>Event Goals</h3>
+    <p>
+      The program aimed to increase awareness of everyday threats (phishing, unsafe Wi-Fi, poor password habits), demonstrate practical defenses, and encourage adoption of basic cyber hygiene behaviors across campus.
+    </p>
+
+    <h3>Assessment Tool </h3>
+    <p>
+      A short self-assessment was introduced at the event to help attendees evaluate their cyber hygiene knowledge. The tool covered practical topics discussed during the program and provided immediate feedback to participants. The assessment is available separately so attendees could take it after the event or revisit it later.
+    </p>
+
+    
+
+    <h3>Event Impact & Follow-up</h3>
+    <p>
+      The assessment results and attendee feedback were compiled into a short report for the university, which recommended follow-up micro-trainings and targeted communications on the most misunderstood topics. The event increased awareness and provided measurable data to improve future sessions.
+    </p>
+
+    <h3>Sample Questions</h3>
+    <p style="color:#444; line-height:1.5;">
+      The assessment included scenario-based items such as recognizing phishing clues, evaluating password strength, handling unknown USB devices, and safe public Wi-Fi practices. (The live tool contains full questions and instant feedback.)
+    </p>
+
+    <!-- optional images -->
+<div class="slider-container">
+  <!-- Slide images -->
+  <div class="slides">
+ <img src="../images/nessus_images/444.png" alt="Cyber Awareness event banner" class="slide-image">
+    <img src="../images/nessus_images/555.png" alt="Closing remarks at event" class="slide-image">
+  </div>
+
+  <!-- Arrows -->
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+
+    
+   
+
+    <h3>Contact / Access</h3>
+    <p>
+      If you want access to the assessment or the post-event summary, contact me via the link on my <a href="../index.html#contact">contact</a> card. I can provide a copy of the questionnaire or a CSV summary of anonymized results for institutional review.
+    </p>
+
+  </main>
+ <script>
+let slideIndex = 0;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function showSlides(n) {
+  const slides = document.getElementsByClassName("slide-image");
+  if (n >= slides.length) { slideIndex = 0; }
+  if (n < 0) { slideIndex = slides.length - 1; }
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slides[slideIndex].style.display = "block";
+}
+
+// Show the first slide initially
+showSlides(slideIndex);
+</script>
+
+</body>
+</html>

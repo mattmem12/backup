@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Address Resolution Protocol Project</title>
+
+    <!-- External Styles -->
+    <link rel="stylesheet" href="../projects_css/main.css">
+</head>
+
+<body>
+
+    <!-- ===== HERO ===== -->
+    <header class="hero">
+        <h1>ARP Cache Poisioning Attacks</h1>
+    </header>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar">
+      <a href="../kalihome.html#projects?cat=cyber" class="back-link">X</a>
+
+    </nav>
+
+    <!-- MAIN -->
+    <div class="project-section">
+
+        <h2 class="section-title">October 16, 2023</h2>
+        <p>
+            This project demonstrates the execution of an ARP cache poisoning Man‑In‑The‑Middle (MITM) attack 
+            inside a controlled lab environment using Docker containers, Scapy, tcpdump, and ARP manipulation techniques.
+        </p>
+
+        <h3 class="task-heading">Steps Performed</h3>
+        <ul>
+            <li>Downloaded and extracted <strong>Labsetup.zip</strong>.</li>
+            <li>Added command aliases inside <strong>.bashrc</strong> for efficiency.</li>
+            <li>Used <code>docker ps</code> to identify container IDs.</li>
+            <img src="../images/Arp_images/1.png" alt=" Output Example" class="project-image">
+
+            <li>Accessed containers using <code>docksh &lt;container_id&gt;</code>.</li>
+            <li>Monitored packets using <code>tcpdump -i eth0 -n</code>.</li>
+            <img src="../images/Arp_images/2.png" alt="Output Example" class="project-image">
+            <li>Map IP and MAC Addresses.</li>
+            <img src="../images/Arp_images/3.png" alt="Output Example" class="project-image">
+            
+            <li>Executed a MITM attack by crafting custom ARP packets (request) with Scapy. Change B's mac to attackers.</li>
+            <img src="../images/Arp_images/4.png" alt="Output Example" class="project-image">
+
+            <li>Checked ARP cache using <code>arp -n</code> to verify poisoning success.</li>
+            <img src="../images/Arp_images/5.png" alt=" Output Example" class="project-image">
+
+            <li>Start attack using reply. B's IP would already be in A's cache</li>
+            <img src="../images/Arp_images/6.png" alt="Output Example" class="project-image">
+
+             <li>Edit malicous code to spoof B's mac address</li>
+            <img src="../images/Arp_images/7.png" alt="Output Example" class="project-image">
+ <li>Verify in A’s container using “docksh” and the beginning
+of its ID “6d”. Then run “apr -n” to view A’s ARP cache and we can see here that the
+attack was ran successfully.</li>
+            <img src="../images/Arp_images/8.png" alt="Output Example" class="project-image">
+
+
+            <li>Created a gratuitous ARP packet to refresh ARP table entries. Edit malicous file:</li>
+            <img src="../images/Arp_images/9.png" alt=" Output Example" class="project-image">
+
+            <li>Executed the attack and confirmed attacker‑MAC-to‑victim‑IP mapping.</li>
+            <img src="../images/Arp_images/10.png" alt="Example" class="project-image">
+
+            <li>Gratuitous ARP scenerio 2. Checked ARP table status before Telnet actions.</li>
+            <img src="../images/Arp_images/11.png" alt="Example" class="project-image">
+
+            <li>Edit malicous code to spoof B's mac address</li>
+            <img src="../images/Arp_images/12.png" alt="Example" class="project-image">
+
+            <li>Executed Telnet connection code with IP forwarding disabled.</li>
+            <img src="../images/Arp_images/13.png" alt="Example" class="project-image">
+
+            <li>ARP table: before, during, and after the ping. Demonstrates how during the ping, the attackers
+were successful in using their mac address with A’s IP address, but the system resolves it, this
+being demonstrated in the ARP table after the process. </li>
+            <img src="../images/Arp_images/14.png" alt="Example" class="project-image">
+
+            <li>Enabled IP forwarding and pinged target to verify routing behavior.</li>
+            <img src="../images/Arp_images/15.png" alt="Example" class="project-image">
+
+            <li>Write  code transforming all typed characters into “Z”.</li>
+            <img src="../images/Arp_images/16.png" alt="Example" class="project-image">
+
+             <li>Executing the original Telnet code will establish the Telnet connection, after that we will turn off
+port forwarding. When we run the new code above it will activate the script, then we will move
+over to A’s terminal.</li>
+            <img src="../images/Arp_images/17.png" alt="Example" class="project-image">
+
+            <li>Observed data transformation in real time using Wireshark.</li>
+            <img src="../images/Arp_images/18.png" alt="Example" class="project-image">
+
+            <li>Modified specific text input (e.g., “ridha” → “AAAAA”).</li>
+            <img src="../images/Arp_images/19.png" alt="Example" class="project-image">
+
+            <li>Toggled port forwarding and verified code execution and text manipulation.</li>
+            <img src="../images/Arp_images/20.png" alt="Example" class="project-image">
+
+        </ul>
+
+        <h3 class="task-heading">Conclusion</h3>
+        <p>
+            This lab demonstrated ARP cache poisoning, MITM interception, and live text manipulation in a 
+            simulated network. The exercise emphasized the importance of ARP‑based security defenses, 
+            monitoring techniques, and understanding network‑layer vulnerabilities.
+        </p>
+
+    </div>
+
+</body>
+</html>

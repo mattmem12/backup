@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insurance Agency Web Scraper</title>
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="../projects_css/main.css">
+
+  <!-- Inline CSS for code blocks -->
+  <style>
+    pre code {
+      display: block;
+      background-color: #1e1e1e; /* Dark background */
+      color: #f8f8f2;           /* Light text color */
+      padding: 15px;
+      border-radius: 8px;
+      max-height: 300px;        /* Fixed height */
+      overflow-y: auto;         /* Scroll if too long */
+      overflow-x: auto;
+      font-family: Consolas, 'Courier New', monospace;
+      font-size: 14px;
+      line-height: 1.4;
+      white-space: pre;         /* Preserve formatting */
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO SECTION -->
+  <header class="hero">
+    <h1>Automated Client Finder — Web Scraper </h1>
+  </header>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="../kalihome.html#projects?cat=software" class="back-link">X</a>
+  </nav>
+
+  <!-- MAIN PROJECT SECTION -->
+  <main class="project-section">
+
+    <h2>November 2025</h2>
+    <p>This project automates finding clients for an insurance agency by scraping manufacturer contact information from a web database and saving it to a CSV file.</p>
+
+    <h3>Objective</h3>
+    <p>Automate client data collection using a Python web scraper to extract manufacturer details efficiently and store them in CSV format.</p>
+
+    <h3>Experimental Apparatus</h3>
+    <h4>Software</h4>
+    <ul>
+      <li>Python 3 — main programming language for the scraper</li>
+      <li>Requests Library — to make HTTP requests</li>
+      <li>BeautifulSoup — to parse HTML and extract data</li>
+      <li>CSV Library — to save data in CSV format</li>
+      <li>OS & Time Modules — for file handling and delays</li>
+    </ul>
+
+    <!-- Section 1: Scraper Code -->
+    <h3>Section 1 — Web Scraper Python Code</h3>
+    <p>The following Python script loops through manufacturer IDs, scrapes detailed contact information, and saves the results to a CSV file.</p>
+    
+    <pre><code>
+import requests
+from bs4 import BeautifulSoup
+import csv
+import time
+import os
+
+detail_url = "Referenced URL"
+
+headers = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+}
+
+start_id = 1
+end_id = 16228
+
+manufacturers_data = []
+csv_file = "C:\\Users\\manufacturers_data.csv"
+fieldnames = ["id", "name", "status", "company_official", "phone"]
+
+def save_data():
+    with open(csv_file, mode="w", newline='', encoding='utf-8') as file:
+        writer = csv.DictWriter(file, fieldnames=fieldnames)
+        writer.writeheader()
+        for manufacturer in manufacturers_data:
+            writer.writerow(manufacturer)
+    print(f"Data saved to {csv_file}")
+
+try:
+    for manufacturer_id in range(start_id, end_id + 1):
+        print(f"Processing manufacturer ID: {manufacturer_id}")
+        try:
+            response = requests.get(detail_url + str(manufacturer_id), headers=headers)
+            response.raise_for_status()
+            soup = BeautifulSoup(response.content, "html.parser")
+            table = soup.find("table", class_="defaultFont")
+            if not table:
+                continue
+
+            manufacturer_info = {"id": manufacturer_id}
+            manufacturer_info["name"] = table.find("h2").text.strip()
+            manufacturer_info["status"] = table.find(text="Status:").find_next("td").text.strip()
+            manufacturer_info["company_official"] = table.find(text="Company Official:").find_next("td").text.strip()
+            manufacturer_info["phone"] = table.find(text="Phone:").find_next("td").text.strip()
+            
+            manufacturers_data.append(manufacturer_info)
+            if len(manufacturers_data) % 10 == 0:
+                save_data()
+
+        except requests.exceptions.RequestException as e:
+            print(f"Error for manufacturer ID {manufacturer_id}: {e}")
+        except AttributeError:
+            print(f"Incomplete data for manufacturer ID {manufacturer_id}")
+        
+        time.sleep(0.1)
+
+except KeyboardInterrupt:
+    print("Script interrupted. Saving data...")
+    save_data()
+except Exception as e:
+    print(f"An error occurred: {e}")
+
+save_data()
+    </code></pre>
+
+    <!-- Section 2: Results -->
+    <h3>Section 2 — Results</h3>
+    <p>The scraper successfully collected manufacturer details including name, status, official contact, and phone number. The data is saved in CSV format for easy access and analysis.</p>
+    <div class="slider-container" id="slider1">
+      <div class="slides">
+        <img src="../images/Z_images/1111.png" alt="CSV Output" class="slide-image">
+      </div>
+   
+    </div>
+
+    <h3>Conclusion</h3>
+    <p>This project demonstrates how automation and web scraping can streamline client data collection for insurance agencies, reducing manual work and improving efficiency.</p>
+
+  </main>
+
+  <!-- SLIDER SCRIPT -->
+  <script>
+    const sliders = {};
+    function showSlides(sliderId, n) {
+      const container = document.getElementById(sliderId);
+      const slides = container.getElementsByClassName("slide-image");
+      if (!sliders[sliderId]) sliders[sliderId] = 0;
+      if (n >= slides.length) sliders[sliderId] = 0;
+      if (n < 0) sliders[sliderId] = slides.length - 1;
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      slides[sliders[sliderId]].style.display = "block";
+    }
+    function plusSlides(sliderId, n) {
+      sliders[sliderId] += n;
+      showSlides(sliderId, sliders[sliderId]);
+    }
+    showSlides('slider1', 0);
+  </script>
+
+</body>
+</html>

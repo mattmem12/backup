@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MQTT Environment Monitoring System</title>
+
+  <!-- External CSS -->
+    <link rel="stylesheet" href="../projects_css/main.css">
+</head>
+<body>
+
+  <!-- HERO SECTION -->
+  <header class="hero">
+    <h1>MQTT-based Environment Monitoring System</h1>
+  </header>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+     <a href="../kalihome.html#projects?cat=software" class="back-link">X</a>
+  </nav>
+
+  <!-- MAIN PROJECT SECTION -->
+  <main class="project-section">
+
+    <h2>December 2024</h2>
+    <p>This project implements an MQTT Publish-and-Subscribe system for environmental monitoring using a DHT11 sensor and Raspberry Pi, displaying real-time temperature and humidity on a responsive web dashboard.</p>
+
+    <h3>Objective</h3>
+    <p>Design and implement an MQTT Publish-and-Subscribe environment monitoring system.</p>
+
+    <h3>Experimental Apparatus</h3>
+    <h4>Hardware</h4>
+    <ul>
+      <li>Raspberry Pi 4 – central processing and MQTT broker</li>
+      <li>DHT11 Sensor – temperature and humidity measurements</li>
+      <li>330Ω Resistor – stabilizes sensor signal</li>
+      <li>Breadboard – connects components</li>
+      <li>Wires – electrical connections</li>
+    </ul>
+
+    <h4>Software</h4>
+    <ul>
+      <li>Python 3 – for publishing, subscribing, and dashboard scripts</li>
+      <li>Paho MQTT Library – handles MQTT communication</li>
+      <li>CherryPy – web server for dashboard</li>
+      <li>Linux OS – runs scripts and MQTT broker on Pi</li>
+      <li>Mosquitto MQTT Broker – enables publish-subscribe messaging</li>
+    </ul>
+
+    <!-- Section 1: Publishing -->
+    <h3>Section 1 — Publishing Python Code</h3>
+    <p><code>MqttPublish.py</code> reads temperature and humidity from the DHT11 sensor and publishes data to the MQTT broker.</p>
+    <pre><code>
+import paho.mqtt.client as mqtt  # Import MQTT client library
+import time                      # Import time module for time and delay
+import board                     # Import board module for specifying GPIO pins
+import adafruit_dht              # Import adafruit_dht module for DHT sensor
+
+# Class to handle DHT11 sensor data publishing to an MQTT broker
+class DHT11MQTTPublisher:
+    def __init__(self, broker_address, port, user, password, topic_temperature, topic_humidity, dht_pin):
+        # Initialize the DHT11 sensor to pin D4
+        self.dht_sensor = adafruit_dht.DHT11(board.D4, use_pulseio=False)
+
+        # Store MQTT server configuration details
+        self.broker_address = broker_address
+        self.port = port
+        self.topic_temperature = topic_temperature
+        self.topic_humidity = topic_humidity
+
+        # Initialize MQTT client with user credentials
+        self.client = mqtt.Client()
+        self.client.username_pw_set(user, password)
+        
+        # Connect to the MQTT server
+        self.client.connect(broker_address, port, 120)
+
+    # Method to continuously publish sensor data
+    def publish_sensor_data(self):
+        while True:  # Infinite loop to keep checking sensor data
+            try:
+                # Read temperature and humidity from the sensor
+                temperature_c = self.dht_sensor.temperature  # Read temperature in Celsius
+                temperature_f = temperature_c * (9 / 5) + 32 # Convert temperature to Fahrenheit
+                humidity = self.dht_sensor.humidity          # Read humidity
+
+                # Check if sensor readings are valid
+                if humidity is not None and temperature_f is not None:
+                    # Publish temperature and humidity data to the MQTT topics
+                    self.client.publish(self.topic_temperature, temperature_f)
+                    self.client.publish(self.topic_humidity, humidity)
+                    print(f"Published Temperature: {temperature_f} F, Humidity: {humidity}%")
+                else:
+                    print("Failed to retrieve data from DHT-11 sensor")
+
+            except RuntimeError as error:  # Handle exceptions due to sensor read errors
+                print(error.args[0])
+                print("Failed to read from the DHT sensor, retrying...")
+                time.sleep(2)  # Wait for 2 seconds before retrying
+                continue
+
+            time.sleep(2)      # Sleep for 2 seconds before the next reading
+
+# Main execution loop
+if __name__ == "__main__":
+    # Configuration for MQTT server and topics
+    broker_address = "172.20.126.85"
+    port = 1883
+    user = "margosia003"
+    password = "gannon"
+    topic_temperature =  "weather/temperature"
+    topic_humidity = "weather/humidity"
+    DHT_PIN = 4  # GPIO pin connected to the DHT11 sensor
+
+    # Create an instance of DHT11MQTTPublisher and start publishing sensor data
+    publisher = DHT11MQTTPublisher(broker_address, port, user, password, topic_temperature, topic_humidity, DHT_PIN)
+    publisher.publish_sensor_data()
+    
+    MQTTPublish
+import paho.mqtt.client as mqttClient
+import time
+  
+def on_connect(client, userdata, flags, rc):  
+    if rc == 0:
+        print("Connected to broker")
+  
+        global Connected                #Use global variable
+        Connected = True                #Signal connection 
+    else: 
+        print("Connection failed")
+  
+def on_message(client, userdata, message):
+    print ("Message received: ",str(message.payload.decode("utf-8")))
+    print("Topic",str(message.topic))
+                                        
+Connected = False   #global variable for the state of the connection
+MessageReceived= False
+  
+broker_address="172.20.126.85"  #Broker address
+port = 1883                        #Broker port
+user = "margosia003"                    #Connection username
+password = "gannon"            #Connection password
+  
+import paho.mqtt.client as paho
+try:
+    client = mqttClient.Client(mqttClient.CallbackAPIVersion.VERSION1)
+except:
+    client = mqttClient.Client()             #create new instance
+client.username_pw_set(user, password=password)    #set username and password
+client.on_connect= on_connect                      #attach function to callback  
+client.connect(broker_address, port=port)          #connect to broker
+  
+client.on_message= on_message                      #attach function to callback
+client.loop_start()        #start the loop
+client.subscribe("weather/#")
+client.subscribe("home/humidity")
+client.subscribe("home/temperature")
+while Connected != True:    #Wait for connection
+    time.sleep(0.1)
+while MessageReceived != True:
+    time.sleep(0.1)
+
+  
+try:
+    while True:
+        time.sleep(1)
+  
+except KeyboardInterrupt:
+    print ("exiting")
+    client.disconnect()
+    client.loop_stop()
+
+
+
+
+
+    </code></pre>
+
+    <!-- Section 2: Subscribing -->
+    <h3>Section 2 — Subscribing Python Code</h3>
+    <p><code>mqttSubscribeClass.py</code> listens to MQTT topics and updates variables with the latest temperature and humidity data.</p>
+    <pre><code>
+import paho.mqtt.client as mqttClient  # Import the MQTT client library
+import time  # Import time module for time and delay
+
+class MQTTListener:
+    def __init__(self):
+        # Initialize variables for storing temperature, humidity, connection status, and message
+        self.temp = ''
+        self.hum = ''
+        self.connected = False
+        self.message_received = False
+
+    # Callback for client connecting to the MQTT broker
+    def on_connect(self, client, userdata, flags, rc):
+        if rc == 0:
+            print("Connected to broker")
+            self.connected = True  # Update connection status
+        else:
+            print("Connection failed with code ", rc)
+
+    # Callback for message received from the MQTT broker
+    def on_message(self, client, userdata, message):
+        topic = str(message.topic)  # Extract the message topic
+        payload = str(message.payload.decode("utf-8"))  # Decode message payload
+        print(f"Message received: Topic = {topic}, Payload = {payload}")  # Debug: Print every message received
+
+        # Update temperature if topic matches
+        if topic == "weather/temperature":
+            self.temp = payload
+            print("Temperature = ", self.temp)
+
+        # Update humidity if topic matches
+        elif topic == "weather/humidity":
+            self.hum = payload
+            print("Humidity = ", self.hum)
+
+        # Check if both temperature and humidity values have been received
+        if self.temp and self.hum:
+            print("Both temperature and humidity received. Disconnecting...")
+            self.message_received = True  # Update message received status
+
+    # Function to get the temperature
+    def getTemperature(self):
+        return self.temp
+
+    # Function to get the humidity
+    def getHumidity(self):
+        return self.hum
+
+
+# Function to connect and retrieve messages
+def retrieveMQTTmessage():
+    listener = MQTTListener()  # Create an instance of the MQTTListener class
+
+    # MQTT broker configuration
+    broker_address = "172.20.126.85"
+    port = 1883
+    user = "margosia003"
+    password = "gannon"
+    
+    import paho.mqtt.client as paho
+    try:
+        client = mqttClient.Client(mqttClient.CallbackAPIVersion.VERSION1)
+    except:
+        client = mqttClient.Client()
+
+    #client = mqttClient.Client("MQTT")  # Create a new MQTT client instance
+    client.username_pw_set(user, password=password)  # Set username and password
+
+    # Assign the callback functions
+    client.on_connect = listener.on_connect
+    client.on_message = listener.on_message
+
+    # Connect to the MQTT broker and subscribe to topics
+    print("Connecting to broker...")
+    client.connect(broker_address, port=port)
+
+    # Subscribe only to the temperature and humidity topics
+    client.subscribe("weather/temperature")
+    client.subscribe("weather/humidity")
+
+    client.loop_start()  # Start the network loop
+
+    # Wait for connection to be established
+    while not listener.connected:
+        print("Waiting for connection...")
+        time.sleep(0.1)
+
+    # Wait until both messages are received
+    while not listener.message_received:
+        print("Waiting for messages...")
+        time.sleep(0.1)
+
+    client.disconnect()  # Disconnect from the broker
+    client.loop_stop()  # Stop the network loop
+
+    return listener.getTemperature(), listener.getHumidity()
+
+
+# Main execution block
+if __name__ == "__main__":
+    temperature, humidity = retrieveMQTTmessage()  # Retrieve temperature and humidity data
+    print("Temperature = ", temperature)  # Print temperature
+    print("Humidity = ", humidity)  # Print humidity
+    </code></pre>
+
+    <!-- Section 3: Dashboard -->
+    <h3>Section 3 — Dashboard Python Code</h3>
+    <p><code>Dashboard.py</code> uses CherryPy to display real-time sensor readings on a web dashboard.</p>
+    <pre><code>
+# 
+import cherrypy      # Import CherryPy
+import time          # Import time module for time and delays
+
+# Importing MQTTListener and retrieveMQTTmessage from a custom module
+from mqttSubscribeClass import MQTTListener
+from mqttSubscribeClass import retrieveMQTTmessage
+
+class HomeEnvDashboard:
+     
+    def __init__(self, MQTTListener):
+        # Initialize the MQTTListener
+        self.mqttListener = MQTTListener
+    
+    @cherrypy.expose
+    def index(self):
+        # Return HTML content for the web page
+        return """
+               "HTML"
+    
+if __name__=="__main__":
+    # Main block to execute when the script is run
+    mqttListener = MQTTListener()  # Create an instance of MQTTListener
+    temperature, humidity = retrieveMQTTmessage()  # Get temperature and humidity data
+    
+    # Start the CherryPy web server with HomeEnvDashboard as the root application
+    cherrypy.quickstart(HomeEnvDashboard(mqttListener))
+
+    </code></pre>
+
+    <!-- Section 4: Circuit -->
+    <h3>Section 4 — Raspberry Pi Circuit Setup</h3>
+    <p>The DHT11 sensor connects to Raspberry Pi GPIO pin 4 with a 330Ω resistor between data and VCC for signal stability.</p>
+    <div class="slider-container" id="slider4">
+      <div class="slides">
+        <img src="../images/Z_images/26.png" alt="Circuit Schematic" class="slide-image">
+      </div>
+   
+    </div>
+
+    <!-- Section 5: Results -->
+    <h3>Section 5 — Results and Demonstration</h3>
+    <p>The Raspberry Pi publishes and subscribes to MQTT topics, and the dashboard visualizes real-time temperature and humidity readings.</p>
+    <div class="slider-container" id="slider5">
+      <div class="slides">
+        <img src="../images/Z_images/28.png" alt="MQTT Test Output" class="slide-image">
+        <img src="../images/Z_images/29.png" alt="Dashboard Output" class="slide-image">
+      </div>
+      <a class="prev" onclick="plusSlides('slider5', -1)">&#10094;</a>
+      <a class="next" onclick="plusSlides('slider5', 1)">&#10095;</a>
+    </div>
+
+    <h3>Conclusion</h3>
+    <p>This project successfully implements an MQTT-based environmental monitoring system. 
+    The system publishes, subscribes, and visualizes temperature and humidity data in real time, demonstrating IoT and publish-subscribe integration.</p>
+
+  </main>
+
+  <!-- SLIDER SCRIPT -->
+  <script>
+    const sliders = {};
+
+    function showSlides(sliderId, n) {
+      const container = document.getElementById(sliderId);
+      const slides = container.getElementsByClassName("slide-image");
+
+      if (!sliders[sliderId]) sliders[sliderId] = 0;
+
+      if (n >= slides.length) sliders[sliderId] = 0;
+      if (n < 0) sliders[sliderId] = slides.length - 1;
+
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+
+      slides[sliders[sliderId]].style.display = "block";
+    }
+
+    function plusSlides(sliderId, n) {
+      sliders[sliderId] += n;
+      showSlides(sliderId, sliders[sliderId]);
+    }
+
+    // Initialize existing sliders only
+    showSlides('slider4', 0);
+    showSlides('slider5', 0);
+  </script>
+
+</body>
+</html>

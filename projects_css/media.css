@@ -1,0 +1,167 @@
+/* Base scaling for small screens */
+@media (max-width: 1024px) {
+  .desktop {
+    padding: 12px;        /* reduce outer padding */
+  }
+
+  /* Stack home-explorer vertically */
+  .home-explorer,
+  .projects-shell {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* Explorer list / project list */
+  .explorer-list,
+  .project-list {
+    width: 100%;
+    min-height: auto;
+    max-height: 300px; /* prevents huge blocks on mobile */
+    overflow-y: auto;
+  }
+
+  /* Terminal preview */
+  .explorer-preview,
+  .project-preview {
+    width: 100%;
+    min-height: 400px;
+    max-height: 800px;
+    overflow-y: auto;
+    padding: 8px; /* reduce padding on small screens */
+  }
+
+  /* Topbar icons shrink and wrap */
+  .topbar-left,
+  .topbar-right .tray {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .kali-logo-img,
+  .kali-line-img {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* Terminal title smaller */
+  .termnav-title {
+    font-size: 0.85rem;
+  }
+
+  .termnav-menu {
+    font-size: 0.75rem;
+    margin-top: 2px;
+    margin-bottom: 4px;
+  }
+
+  /* WHOAMI view */
+  .whoami-view div:first-child {
+    font-size: 2rem; /* smaller first line for mobile */
+    letter-spacing: 0.2em;
+  }
+
+  .whoami-view .line {
+    width: 200px; /* shrink line width */
+  }
+
+  .highlight {
+    width: 100%; /* full width for smaller screens */
+    font-size: 0.85rem;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .desktop {
+    padding: 8px;
+  }
+
+  .kali-topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 4px 8px;
+  }
+
+  .topbar-left,
+  .topbar-right .tray {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .home-explorer,
+  .projects-shell {
+    gap: 8px;
+  }
+
+  .explorer-list,
+  .project-list,
+  .explorer-preview,
+  .project-preview {
+    max-height: none;
+  }
+
+  .whoami-view div:first-child {
+    font-size: 1.5rem;
+    letter-spacing: 0.15em;
+  }
+}
+
+/* Scrollbars for WebKit browsers */
+.explorer-preview::-webkit-scrollbar,
+.project-preview::-webkit-scrollbar,
+.explorer-list::-webkit-scrollbar,
+.project-list::-webkit-scrollbar {
+    width: 8px; /* thickness */
+}
+
+.explorer-preview::-webkit-scrollbar-track,
+.project-preview::-webkit-scrollbar-track,
+.explorer-list::-webkit-scrollbar-track,
+.project-list::-webkit-scrollbar-track {
+    background: var(--panel); /* match panel background */
+    border-radius: 6px;
+}
+
+.explorer-preview::-webkit-scrollbar-thumb,
+.project-preview::-webkit-scrollbar-thumb,
+.explorer-list::-webkit-scrollbar-thumb,
+.project-list::-webkit-scrollbar-thumb {
+    background: var(--accent); /* bright green/blue highlight */
+    border-radius: 6px;
+    border: 2px solid var(--panel); /* add a border for inset effect */
+}
+
+.explorer-preview::-webkit-scrollbar-thumb:hover,
+.project-preview::-webkit-scrollbar-thumb:hover,
+.explorer-list::-webkit-scrollbar-thumb:hover,
+.project-list::-webkit-scrollbar-thumb:hover {
+    background: #44ffb0; /* highlight on hover */
+}
+
+/* Firefox scrollbar styling */
+.explorer-preview,
+.project-preview,
+.explorer-list,
+.project-list {
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent) var(--panel);
+}
+/* Mobile verse styling */
+.mobile-verse {
+  display: none;            /* hidden by default */
+  color: var(--muted);
+  padding: 10px;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+/* Show mobile verse only on small screens */
+@media (max-width: 768px) {
+  #verse { display: none; } /* hide desktop verse */
+  .mobile-verse { display: block; }
+}
