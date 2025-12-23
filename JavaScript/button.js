@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.innerHTML = `
       <div class="modal-content">
         <button class="close">X</button>
-        ${options.html || (options.file ? `<iframe src="Z_images/${options.file}"></iframe>` : '')}
+        ${options.html || (options.file ? `<iframe src="images/Z_images/${options.file}"></iframe>` : '')}
       </div>
     `;
     document.body.appendChild(modal);

@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Matthew Margosian — Kali Portfolio</title>
+  <link rel="stylesheet" href="kalihome.css">
+    <link rel="stylesheet" href="/projects_css/media.css">
+</head>
+<body>
+
+  <!-- Terminal-style top bar -->
+  <header class="kali-topbar">
+  <div class="topbar-left">
+     <img src="images/sb_images/icon.png" alt="Kali Logo" class="kali-logo-img" />
+   <img src="images/sb_images/line.png" alt="Kali Logo" class="kali-line-img" />
+     <img src="images/sb_images/desktop.png" alt="Kali Logo" class="kali-logo-img" />
+    <img src="images/sb_images/fol.png" alt="Kali Logo" class="kali-logo-img" />
+      <img src="images/sb_images/te.png" alt="Kali Logo" class="kali-logo-img" />
+      <img src="images/sb_images/fire.png" alt="Kali Logo" class="kali-logo-img" />
+     <img src="images/sb_images/term.png" alt="Kali Logo" class="kali-logo-img" />
+       <img src="images/sb_images/line.png" alt="Kali Logo" class="kali-line-img" />
+       <span class="indicator">1</span>
+       <span class="indicator">2</span>
+       <span class="indicator">3</span>
+       <span class="indicator">4</span>
+       <img src="images/sb_images/line.png" alt="Kali Logo" class="kali-line-img" />
+          <a href="/index.html" class="kali-logo-img"><img src="images/sb_images/desktop.png" alt="Kali Logo" class="kali-logo-img" /></a>
+        <a href="/index.html" class="kali-logo-img"><img src="images/sb_images/term.png" alt="Kali Logo" class="kali-logo-img" /></a>
+  </div>
+  <div class="topbar-right">
+    <div class="tray">
+     <span class="indicator" id="clock">--:--</span><div id="verse" style="color:#44ffb0; font-family:var(--mono); margin-top:5px;"></div><div id="mobile-verse" class="mobile-verse"></div>
+    <img src="images/sb_images/r1.png" alt="Kali Logo" class="kali-logo-img" />
+     <img src="images/sb_images/r3.png" alt="Kali Logo" class="kali-logo-img" />
+      <img src="images/sb_images/r4.png" alt="Kali Logo" class="kali-logo-img" />
+       <img src="images/sb_images/r5.png" alt="Kali Logo" class="kali-logo-img" />
+         <img src="images/sb_images/line.png" alt="Kali Logo" class="kali-logo-img" />
+        <img src="images/sb_images/r6.png" alt="Kali Logo" class="kali-logo-img" />
+         <img src="images/sb_images/r7.png" alt="Kali Logo" class="kali-logo-img" id="closeBtn" style="cursor:pointer;" />
+
+
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main content area -->
+  <main class="desktop">
+
+    <!-- Home / File Explorer -->
+    <section id="home" class="view active">
+      <div class="home-explorer">
+        <!-- Left pane: folders -->
+       <aside class="explorer-list">
+<img src="images/sb_images/desktop.png" alt="Kali Logo" class="kali-logo-img" />
+  <!-- Top toolbar -->
+  <div class="explorer-nav-top">
+    
+
+    <span class="menu-text">File&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View</span>
+     <div class="explorer-separator2"></div>
+
+    <div class="nav-actions">
+      <img src="images/sb_images/arrow1.png" alt="" class="nav-icon" id="backArrow1"/>&nbsp;&nbsp;&nbsp;
+      <img src="images/sb_images/arrow2.png" alt="" class="nav-icon" />&nbsp;&nbsp;&nbsp;
+      <img src="images/sb_images/arrow3.png" alt="" class="nav-icon" />&nbsp;&nbsp;&nbsp;
+      <a href="/index.html" class="kali-logo-img"><img src="images/sb_images/house.png"  alt="" class="nav-icon" /></a>&nbsp;&nbsp;&nbsp;
+    </div>
+  </div>
+
+  <!-- Thin separator -->
+  <div class="explorer-separator"></div>
+
+ 
+  <!-- Navigation -->
+  <nav class="explorer-nav">
+    <ul>
+      <li class="folder" data-target="about">Public/</li>
+      <li class="folder" data-target="education">education/</li>
+      <li class="folder" data-target="skills">skills/</li>
+      <li class="folder" data-target="projects">projects/</li>
+      <li class="folder" data-target="experience">experience/</li>
+      <li class="folder" data-target="blog">Blogs/</li>
+    </ul>
+  </nav>
+
+</aside>
+
+
+        <!-- Right pane: terminal view -->
+        <section class="explorer-preview">   <span class="termnav-header">
+     <img src="images/sb_images/term.png" alt="Kali Logo" class="kali-logo-img" />
+    <span class="termnav-title">mmargosian@kali:~</span>
+    <span class="termnav-controls">O O O</span> </span>
+<span class="termnav-menu">Session Actions Edit View Help</span>
+  <div class="explorer-separator"></div><div id="homePreview" class="terminal-view">
+       <div id="whoamiTerminal" class="whoami-view">
+  <div><div class="line"></div> WHOAMI <div class="line"></div> </div> <div>&nbsp;</div>
+  <div>[*] Available Information:</div>
+  <div>[-] Matthew Margosian /</div>
+  <div>[-] matt.margosian@gmail.com</div>
+  <div>[-] B.S Cybersecurity</div>
+  <div>[-] IT Help Desk Technician</div>
+  <div>[1] User/</div>
+  <div>[2] Education/</div>
+  <div>[3] Skills/</div>
+  <div>[4] Projects/</div>
+  <div>[5] Experience/</div>
+  <div>[+] Blogs</div>
+  <div class="highlight">:: Select the options you want and then press enter</div>
+  <div>- [whoami] - [-]</div>
+
+  <div >  ┌──(margosian㉿kali)-[~]
+└─$ <input type="text" class="blinking" id="whoamiInput" placeholder="">
+
+
+
+
+</div>
+
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- Projects explorer (split view) -->
+    <section id="projects" class="view">
+        <div id="projects-anchor"></div>
+      <div class="projects-shell">
+        <aside class="project-list" aria-label="Project list">
+          <img src="images/sb_images/desktop.png" alt="Kali Logo" class="kali-logo-img" />
+  <!-- Top toolbar -->
+  <div class="explorer-nav-top">
+    
+
+    <span class="menu-text">File&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View</span>
+     <div class="explorer-separator2"></div>
+
+    <div class="nav-actions">
+      <a href="/index.html" class="kali-logo-img"><img src="images/sb_images/arrow1.png" alt="" class="nav-icon" /></a>&nbsp;&nbsp;&nbsp;
+      <img src="images/sb_images/arrow2.png" alt="" class="nav-icon" />&nbsp;&nbsp;&nbsp;
+      <img src="images/sb_images/arrow3.png" alt="" class="nav-icon" />&nbsp;&nbsp;&nbsp;
+      <a href="/index.html" class="kali-logo-img"><img src="images/sb_images/house.png"  alt="" class="nav-icon" /></a>&nbsp;&nbsp;&nbsp;
+      
+    </div>  <div class="explorer-separator"></div>
+           <ul class="category">
+      <button class="cat-toggle home-btn" data-href="index.html">../</button>
+
+            <ul class="cat-list">
+                
+            </ul>
+            
+            <button class="cat-toggle" data-target="cyber">Cybersecurity/</button>
+            <button class="cat-toggle" data-target="network">Networking/</button>
+            <button class="cat-toggle" data-target="software">Software/</button>
+            <button class="cat-toggle" data-target="progress">In Progress/</button>
+
+        </aside>
+
+ <section class="project-preview"><span class="termnav-header">
+    <img src="images/sb_images/term.png" alt="Kali Logo" class="kali-logo-img" />
+    <span class="termnav-title">mmargosian@kali:~</span>
+    <span class="termnav-controls">O O O</span> </span>
+<span class="termnav-menu">Session Actions Edit View Help</span>
+  <div class="explorer-separator"></div>
+  <div id="projectsPreview" class="terminal-view">
+    <div class="line">mmargosian@kali:~$ ls</div>
+    <div class="dir-row">
+      <span class="dir" data-target="cyber">Cybersecurity</span>
+      <span class="dir" data-target="network">Networking</span>
+      <span class="dir" data-target="software">Software</span>
+      <span class="dir" data-target="progress">In Progress</span>
+    </div>
+    <div id="catOutput" class="cat-output"></div>
+  </div>
+</section>
+
+
+    <!-- Minimal single-card sections (terminal previews) -->
+    <section id="skills" class="view"><div class="single-card"></div></section>
+    <section id="education" class="view"><div class="single-card"></div></section>
+    <section id="experience" class="view"><div class="single-card"></div></section>
+    <section id="about" class="view"><div class="single-card"> </div></section>
+    <section id="contact" class="view">
+      <div class="single-card">
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:matt.margosian@gmail.com">matt.margosian@gmail.com</a></p>
+        <p>Phone: 814-402-0301</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Modals for diploma/transcript -->
+ <div id="diploma" class="modal" style="display:none;">
+  <div class="modal-content">
+    <button class="close" onclick="closeModal('diploma')">✕</button>
+    <iframe id="diplomaFrame" width="100%" height="500px"></iframe>
+  </div>
+</div>
+
+<div id="transcript" class="modal" style="display:none;">
+  <div class="modal-content">
+    <button class="close" onclick="closeModal('transcript')">✕</button>
+    <iframe id="transcriptFrame" width="100%" height="500px"></iframe>
+  </div>
+</div>
+
+
+  <script src="kalihome.js"></script>
+  <script src="JavaScript/button.js"></script>
+   <script src="JavaScript/clock.js"></script>
+
+
+</body>
+</html>
